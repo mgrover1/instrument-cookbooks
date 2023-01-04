@@ -409,21 +409,21 @@ title="Print to PDF"
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from ambient_api.ambientapi import AmbientAPI
-import numpy as np
-from datetime import datetime
-import time
-import hvplot.pandas
-import hvplot.xarray
-from bokeh.models.formatters import DatetimeTickFormatter
-import holoviews as hv
-import pandas as pd
-import panel as pn
-import holoviews as hv
-import xarray as xr
-import os
-from pathlib import Path
-hv.extension(&#39;bokeh&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ambient_api.ambientapi</span> <span class="kn">import</span> <span class="n">AmbientAPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hvplot.pandas</span>
+<span class="kn">import</span> <span class="nn">hvplot.xarray</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.formatters</span> <span class="kn">import</span> <span class="n">DatetimeTickFormatter</span>
+<span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s1">&#39;bokeh&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2338,9 +2338,9 @@ if (window.Jupyter !== undefined) {
 <h2>Setup Your Environment<a class="headerlink" href="#setup-your-environment" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>! export AMBIENT_ENDPOINT=https://api.ambientweather.net/v1
-! export AMBIENT_API_KEY=&quot;b93528c5ad494a70bf4cf804b1fcf92df2ffddd530084ab7903fac42c235becd&quot;
-! export AMBIENT_APPLICATION_KEY=&quot;6f8a8d7706a744f28af53fca96ced84a0851269a01484942a97788c7c1d18992&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AMBIENT_ENDPOINT</span><span class="o">=</span>https://api.ambientweather.net/v1
+<span class="o">!</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AMBIENT_API_KEY</span><span class="o">=</span><span class="s2">&quot;b93528c5ad494a70bf4cf804b1fcf92df2ffddd530084ab7903fac42c235becd&quot;</span>
+<span class="o">!</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AMBIENT_APPLICATION_KEY</span><span class="o">=</span><span class="s2">&quot;6f8a8d7706a744f28af53fca96ced84a0851269a01484942a97788c7c1d18992&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -2351,21 +2351,21 @@ if (window.Jupyter !== undefined) {
 <p>Now, we can call the API once we have our environment variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>api = AmbientAPI()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">AmbientAPI</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>devices = api.get_devices()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">devices</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_devices</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>len(devices)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2380,58 +2380,58 @@ if (window.Jupyter !== undefined) {
 <h2>Setup Helper Functions and Metadata Fixes<a class="headerlink" href="#setup-helper-functions-and-metadata-fixes" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>attrs_dict = {&#39;tempf&#39;:{&#39;standard_name&#39;: &#39;Temperature&#39;,
-                       &#39;units&#39;: &#39;degF&#39;},
-              &#39;tempinf&#39;:{&#39;standard_name&#39;: &#39;Temperature&#39;,
-                         &#39;units&#39;: &#39;degF&#39;},
-              &#39;dewPoint&#39;: {&#39;standard_name&#39;: &#39;Dewpoint Temperature&#39;,
-                           &#39;units&#39;: &#39;degF&#39;},
-              &#39;dewPointin&#39;: {&#39;standard_name&#39;: &#39;Dewpoint Temperature&#39;,
-                             &#39;units&#39;: &#39;degF&#39;}}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attrs_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tempf&#39;</span><span class="p">:{</span><span class="s1">&#39;standard_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degF&#39;</span><span class="p">},</span>
+              <span class="s1">&#39;tempinf&#39;</span><span class="p">:{</span><span class="s1">&#39;standard_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degF&#39;</span><span class="p">},</span>
+              <span class="s1">&#39;dewPoint&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Dewpoint Temperature&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degF&#39;</span><span class="p">},</span>
+              <span class="s1">&#39;dewPointin&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Dewpoint Temperature&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;degF&#39;</span><span class="p">}}</span>
 
-variable_mapping = {&#39;tempf&#39;:&#39;outdoor_temperature&#39;,
-                    &#39;tempinf&#39;:&#39;indoor_temperature&#39;,
-                    &#39;dewPoint&#39;:&#39;outdoor_dewpoint&#39;,
-                    &#39;dewPointin&#39;:&#39;indoor_dewpoint&#39;,
-                    &#39;date&#39;:&#39;time&#39;}
+<span class="n">variable_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tempf&#39;</span><span class="p">:</span><span class="s1">&#39;outdoor_temperature&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;tempinf&#39;</span><span class="p">:</span><span class="s1">&#39;indoor_temperature&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;dewPoint&#39;</span><span class="p">:</span><span class="s1">&#39;outdoor_dewpoint&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;dewPointin&#39;</span><span class="p">:</span><span class="s1">&#39;indoor_dewpoint&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;date&#39;</span><span class="p">:</span><span class="s1">&#39;time&#39;</span><span class="p">}</span>
 
 
-def process_station(device, attrs=attrs_dict, variable_mapping=variable_mapping):
+<span class="k">def</span> <span class="nf">process_station</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs_dict</span><span class="p">,</span> <span class="n">variable_mapping</span><span class="o">=</span><span class="n">variable_mapping</span><span class="p">):</span>
     
-    current_date = datetime.utcnow()
-    # Read in the station data
-    data = device.get_data(end_date = current_date)
+    <span class="n">current_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+    <span class="c1"># Read in the station data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="p">)</span>
     
-    meta = device.info
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">info</span>
     
-    # Read into a pandas dataframe
-    df = pd.DataFrame(data)
+    <span class="c1"># Read into a pandas dataframe</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     
-    # Format the times properly
-    df[&#39;date&#39;] = pd.to_datetime(df.date).astype(&#39;datetime64[ns]&#39;)
+    <span class="c1"># Format the times properly</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">)</span>
 
-    # Sort the values and set the index to be the date
-    df = df.sort_values(&#39;date&#39;)
-    df = df.set_index(&#39;date&#39;)
+    <span class="c1"># Sort the values and set the index to be the date</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
 
-    ds = df.to_xarray()
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
 
-    # Add associated metadata
-    for variable in attrs.keys():
-        ds[variable].attrs = attrs[variable]
+    <span class="c1"># Add associated metadata</span>
+    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">ds</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
     
-    # Rename the variables
-    ds = ds.rename(variable_mapping)
+    <span class="c1"># Rename the variables</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">variable_mapping</span><span class="p">)</span>
         
-    # Reshape the data
-    ds = ds.expand_dims(&#39;station&#39;)
-    ds[&#39;station&#39;] = [meta[&#39;name&#39;]]
-    ds[&#39;latitude&#39;] = meta[&#39;coords&#39;][&#39;coords&#39;][&#39;lat&#39;]
-    ds[&#39;longitude&#39;] = meta[&#39;coords&#39;][&#39;coords&#39;][&#39;lon&#39;]
+    <span class="c1"># Reshape the data</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="s1">&#39;station&#39;</span><span class="p">)</span>
+    <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;station&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]</span>
+    <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;coords&#39;</span><span class="p">][</span><span class="s1">&#39;coords&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+    <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;coords&#39;</span><span class="p">][</span><span class="s1">&#39;coords&#39;</span><span class="p">][</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
     
-    ds = ds.sel(time=f&quot;{current_date.year}-{current_date.month}-{current_date.day}&quot;)
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_date</span><span class="o">.</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">current_date</span><span class="o">.</span><span class="n">month</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">current_date</span><span class="o">.</span><span class="n">day</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
-    return ds
+    <span class="k">return</span> <span class="n">ds</span>
 </pre></div>
 </div>
 </div>
@@ -2442,14 +2442,14 @@ def process_station(device, attrs=attrs_dict, variable_mapping=variable_mapping)
 <p>Read our data, and combine the datasets at the end into a single dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dsets = []
-for device in devices:
-    try:
-        dsets.append(process_station(device))
-    except:
-        pass
-    time.sleep(5)
-ds = xr.concat(dsets, dim=&#39;station&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dsets</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">dsets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_station</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dsets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;station&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2467,13 +2467,13 @@ ds = xr.concat(dsets, dim=&#39;station&#39;)
 <h2>Write out the Data File<a class="headerlink" href="#write-out-the-data-file" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>end_time = ds.isel(time=-1)
-time_label = pd.to_datetime(end_time.time.values).strftime(&#39;%Y/%m/%d/ambient.a1.%Y%m%d.nc&#39;)
-full_file = f&#39;../../data/surface-meteorology/{time_label}&#39;
-full_path = Path(full_file)
-if not os.path.exists(full_path.parent):
-    os.makedirs(full_path.parent)
-ds.to_netcdf(full_file)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">end_time</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">time_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_time</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1">/ambient.a1.%Y%m</span><span class="si">%d</span><span class="s1">.nc&#39;</span><span class="p">)</span>
+<span class="n">full_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../../data/surface-meteorology/</span><span class="si">{</span><span class="n">time_label</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">full_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">full_file</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_path</span><span class="o">.</span><span class="n">parent</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">full_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">full_file</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2483,14 +2483,14 @@ ds.to_netcdf(full_file)
 <h2>Visualize the Variables<a class="headerlink" href="#visualize-the-variables" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>formatter = DatetimeTickFormatter(hours=&quot;%d %b %Y \n %H:%M UTC&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formatter</span> <span class="o">=</span> <span class="n">DatetimeTickFormatter</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> %b %Y </span><span class="se">\n</span><span class="s2"> %H:%M UTC&quot;</span><span class="p">)</span>
 
-variables = [&#39;outdoor_temperature&#39;, &#39;outdoor_dewpoint&#39;, &#39;hourlyrainin&#39;, &#39;solarradiation&#39;]
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;outdoor_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;outdoor_dewpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;hourlyrainin&#39;</span><span class="p">,</span> <span class="s1">&#39;solarradiation&#39;</span><span class="p">]</span>
 
-panels = []
-for variable in variables:
-    panels.append(ds[variable].hvplot.line(x=&#39;time&#39;, by=&#39;station&#39;, xformatter=formatter))
-hv.Layout(panels).cols(1)
+<span class="n">panels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">panels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">hvplot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;station&#39;</span><span class="p">,</span> <span class="n">xformatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">))</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">panels</span><span class="p">)</span><span class="o">.</span><span class="n">cols</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

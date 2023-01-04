@@ -353,14 +353,14 @@ title="Print to PDF"
 <h1>Read Data from the Doppler Lidar<a class="headerlink" href="#read-data-from-the-doppler-lidar" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import glob
-import utils
-import xarray as xr
-import pandas as pd
-from datetime import datetime, timedelta
-from datetime import datetime
-import hvplot.xarray
-import holoviews as hv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">hvplot.xarray</span>
+<span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
 </pre></div>
 </div>
 </div>
@@ -2274,7 +2274,7 @@ if (window.Jupyter !== undefined) {
 <h2>Compile a list of data files<a class="headerlink" href="#compile-a-list-of-data-files" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>files = sorted(glob.glob(&#39;../../data/scanning-doppler-lidar/*&#39;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;../../data/scanning-doppler-lidar/*&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2284,28 +2284,28 @@ if (window.Jupyter !== undefined) {
 <h2>Create helper functions to read in the data<a class="headerlink" href="#create-helper-functions-to-read-in-the-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def convert_to_hours_minutes_seconds(decimal_hour, initial_time):
-    delta = timedelta(hours=decimal_hour)
-    return datetime(initial_time.year, initial_time.month, initial_time.day) + delta
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_to_hours_minutes_seconds</span><span class="p">(</span><span class="n">decimal_hour</span><span class="p">,</span> <span class="n">initial_time</span><span class="p">):</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">decimal_hour</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="p">(</span><span class="n">initial_time</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">initial_time</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">initial_time</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">+</span> <span class="n">delta</span>
 
-def read_as_netcdf(file):
-    field_dict = utils.hpl2dict(file)
-    initial_time = pd.to_datetime(field_dict[&#39;start_time&#39;])
+<span class="k">def</span> <span class="nf">read_as_netcdf</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">field_dict</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">hpl2dict</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">initial_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;start_time&#39;</span><span class="p">])</span>
 
-    time = pd.to_datetime([convert_to_hours_minutes_seconds(x, initial_time) for x in field_dict[&#39;decimal_time&#39;]])
+    <span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="n">convert_to_hours_minutes_seconds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">initial_time</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;decimal_time&#39;</span><span class="p">]])</span>
 
-    ds = xr.Dataset(coords={&#39;range&#39;:field_dict[&#39;center_of_gates&#39;],
-                            &#39;time&#39;: time,
-                            &#39;azimuth&#39;: (&#39;time&#39;, field_dict[&#39;azimuth&#39;])},
-                    data_vars={&#39;radial_velocity&#39;:([&#39;range&#39;, &#39;time&#39;],
-                                                  field_dict[&#39;radial_velocity&#39;]),
-                               &#39;beta&#39;: ((&#39;range&#39;, &#39;time&#39;), 
-                                        field_dict[&#39;beta&#39;]),
-                               &#39;intensity&#39;: ((&#39;range&#39;, &#39;time&#39;),
-                                             field_dict[&#39;intensity&#39;])
-                              }
-                   )
-    return ds
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;range&#39;</span><span class="p">:</span><span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;center_of_gates&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+                            <span class="s1">&#39;azimuth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;azimuth&#39;</span><span class="p">])},</span>
+                    <span class="n">data_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;radial_velocity&#39;</span><span class="p">:([</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">],</span>
+                                                  <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;radial_velocity&#39;</span><span class="p">]),</span>
+                               <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="p">((</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">),</span> 
+                                        <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]),</span>
+                               <span class="s1">&#39;intensity&#39;</span><span class="p">:</span> <span class="p">((</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">),</span>
+                                             <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;intensity&#39;</span><span class="p">])</span>
+                              <span class="p">}</span>
+                   <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds</span>
 </pre></div>
 </div>
 </div>
@@ -2315,14 +2315,14 @@ def read_as_netcdf(file):
 <h2>Read in the datasets and merge into a single dataset<a class="headerlink" href="#read-in-the-datasets-and-merge-into-a-single-dataset" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>datasets = [read_as_netcdf(file) for file in files]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">read_as_netcdf</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>datasets
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span>
 </pre></div>
 </div>
 </div>
@@ -2433,14 +2433,14 @@ def read_as_netcdf(file):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = xr.concat(datasets, dim=&#39;time&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(ds.radial_velocity.hvplot(clim=(-5, 5), cmap=&#39;seismic&#39;) + ds.intensity.hvplot(cmap=&#39;magma&#39;, clim=(0, 4))).cols(1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">radial_velocity</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span><span class="n">clim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span><span class="o">.</span><span class="n">cols</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2490,7 +2490,7 @@ WARNING:param.Image04808: Image dimension time is  not evenly sampled to relativ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.beta.max()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2863,7 +2863,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.radial_velocity.plot(ylim=(0, 1000), vmin=-2, vmax=2, cmap=&#39;coolwarm&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">radial_velocity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2876,24 +2876,23 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def convert_to_hours_minutes_seconds(decimal_hour, initial_time=initial_time):
-    delta = timedelta(hours=decimal_hour)
-    return datetime(initial_time.year, initial_time.month, initial_time.day) + delta
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_to_hours_minutes_seconds</span><span class="p">(</span><span class="n">decimal_hour</span><span class="p">,</span> <span class="n">initial_time</span><span class="o">=</span><span class="n">initial_time</span><span class="p">):</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">decimal_hour</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="p">(</span><span class="n">initial_time</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">initial_time</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">initial_time</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">+</span> <span class="n">delta</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from datetime import timedelta
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>initial_time + timedelta(hours=72.345)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_time</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">72.345</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2905,7 +2904,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.to_datetime(&quot;%d:%02d.%02.6f&quot; % (hours, minutes, seconds))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">:</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2922,7 +2921,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;%02.6f&quot; % 7.329996000000392
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;</span><span class="si">%02.6f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="mf">7.329996000000392</span>
 </pre></div>
 </div>
 </div>
@@ -2934,7 +2933,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.to_datetime([&#39;2022-12-08 15:05.47&#39;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2022-12-08 15:05.47&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2946,7 +2945,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>time
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span>
 </pre></div>
 </div>
 </div>
@@ -2965,7 +2964,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>field_dict[&#39;spectral_width&#39;].shape
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;spectral_width&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -2977,7 +2976,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>field_dict[&#39;center_of_gates&#39;].shape
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;center_of_gates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -2989,7 +2988,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>field_dict
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">field_dict</span>
 </pre></div>
 </div>
 </div>
@@ -3083,7 +3082,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.beta.plot(x=&#39;time&#39;);
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -3093,7 +3092,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.radial_velocity.plot(x=&#39;time&#39;);
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">radial_velocity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -3103,7 +3102,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.intensity.plot()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3116,7 +3115,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xr.Dataset(field_dict)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">field_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3182,7 +3181,7 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>utils.hpl_to_netcdf(files[0], &#39;sample_file.nc&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">hpl_to_netcdf</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sample_file.nc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3194,22 +3193,22 @@ array(0.00075305)</pre><div class='xr-wrap' style='display:none'><div class='xr-
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import xarray as xr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = xr.open_dataset(&#39;sample_file.nc/2022/202212/20221208/RHI_240_20221208_150544_l0.nc&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;sample_file.nc/2022/202212/20221208/RHI_240_20221208_150544_l0.nc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds = ds.set_coords(&#39;decimal_time&#39;)
-ds.radial_velocity.plot()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">set_coords</span><span class="p">(</span><span class="s1">&#39;decimal_time&#39;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">radial_velocity</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3222,7 +3221,7 @@ ds.radial_velocity.plot()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ds.decimal_time.values
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">decimal_time</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
