@@ -160,6 +160,11 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data-access.html">Data Access</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Transformation</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/data-transformation/transform-wxt-data-xarray.html">Transform Weather Sensor Data from Waggle to an Xarray Dataset + Plot with ACT</a></li>
@@ -299,7 +304,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -315,6 +322,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-status">Data Flow Status</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -329,6 +344,23 @@ document.write(`
 <p><img alt="CROCUS Logo" src="_images/CROCUS_Logo.svg" /></p>
 <p>This is a Github repository to host exploration of <a class="reference external" href="https://www.anl.gov/crocus">CROCUS</a> instrumentation and data.</p>
 <p>CROCUS is a Department of Energy’s Urban Integrated Field Laboratory supported by Argonne National Laboratory</p>
+<section id="data-flow-status">
+<h2>Data Flow Status<a class="headerlink" href="#data-flow-status" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sensor</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ambient Weather Stations</p></td>
+<td><p><a class="reference external" href="https://github.com/CROCUS-Urban/instrument-cookbooks/actions/workflows/run-data-flow.yml"><img alt="data-flow" src="https://github.com/CROCUS-Urban/instrument-cookbooks/actions/workflows/run-data-flow.yml/badge.svg" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -390,6 +422,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-status">Data Flow Status</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

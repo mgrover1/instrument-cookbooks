@@ -160,6 +160,11 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../data-access.html">Data Access</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Transformation</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../data-transformation/transform-wxt-data-xarray.html">Transform Weather Sensor Data from Waggle to an Xarray Dataset + Plot with ACT</a></li>
@@ -227,6 +232,24 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-rocket"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="http://binder.mypythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/crocus_level1_node/vaisala_wxt536.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
       
       
       
@@ -441,9 +464,8 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the SAGE data client to access the data</span>
 <span class="c1"># Note: We need to know the time period we are interested in</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-04-10T12:00:00Z&quot;</span><span class="p">,</span>
-                            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T15:00:00Z&quot;</span><span class="p">,</span> 
+                            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T13:00:00Z&quot;</span><span class="p">,</span> 
                             <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
-                                <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-wxt536&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W057&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
                             <span class="p">}</span>
@@ -590,10 +612,10 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>1137835</th>
-      <td>2023-04-10 14:59:59.686477504+00:00</td>
+      <th>381107</th>
+      <td>2023-04-10 12:59:59.699540132+00:00</td>
       <td>wxt.wind.speed</td>
-      <td>3.2</td>
+      <td>1.6</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -606,10 +628,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>1137836</th>
-      <td>2023-04-10 14:59:59.768390286+00:00</td>
+      <th>381108</th>
+      <td>2023-04-10 12:59:59.774177079+00:00</td>
       <td>wxt.wind.speed</td>
-      <td>3.3</td>
+      <td>1.6</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -622,10 +644,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>1137837</th>
-      <td>2023-04-10 14:59:59.842427079+00:00</td>
+      <th>381109</th>
+      <td>2023-04-10 12:59:59.848843626+00:00</td>
       <td>wxt.wind.speed</td>
-      <td>3.3</td>
+      <td>1.6</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -638,10 +660,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>1137838</th>
-      <td>2023-04-10 14:59:59.916735651+00:00</td>
+      <th>381110</th>
+      <td>2023-04-10 12:59:59.922973433+00:00</td>
       <td>wxt.wind.speed</td>
-      <td>3.3</td>
+      <td>1.6</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -654,10 +676,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>1137839</th>
-      <td>2023-04-10 14:59:59.993573466+00:00</td>
+      <th>381111</th>
+      <td>2023-04-10 12:59:59.996916134+00:00</td>
       <td>wxt.wind.speed</td>
-      <td>3.1</td>
+      <td>1.6</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -671,7 +693,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-<p>1137840 rows × 13 columns</p>
+<p>381112 rows × 13 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -682,7 +704,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=1137840, step=1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=381112, step=1)
 </pre></div>
 </div>
 </div>
@@ -711,7 +733,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.env.temp&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.wind.speed&#39;, &#39;wxt.wind.direction&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.heater.temp&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;wxt.wind.direction&#39;, &#39;wxt.heater.volt&#39;, &#39;wxt.rain.accumulation&#39;, &#39;wxt.env.pressure&#39;, &#39;wxt.wind.speed&#39;, &#39;wxt.heater.temp&#39;, &#39;wxt.env.humidity&#39;, &#39;wxt.env.temp&#39;}
 </pre></div>
 </div>
 </div>
@@ -819,7 +841,7 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>284460</th>
+      <th>95278</th>
       <td>2023-04-10 12:00:00.030623851+00:00</td>
       <td>wxt.env.temp</td>
       <td>8.4</td>
@@ -835,7 +857,7 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>284461</th>
+      <th>95279</th>
       <td>2023-04-10 12:00:00.110927910+00:00</td>
       <td>wxt.env.temp</td>
       <td>8.4</td>
@@ -851,7 +873,7 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>284462</th>
+      <th>95280</th>
       <td>2023-04-10 12:00:00.185660209+00:00</td>
       <td>wxt.env.temp</td>
       <td>8.4</td>
@@ -867,7 +889,7 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>284463</th>
+      <th>95281</th>
       <td>2023-04-10 12:00:00.259648308+00:00</td>
       <td>wxt.env.temp</td>
       <td>8.4</td>
@@ -883,7 +905,7 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>284464</th>
+      <th>95282</th>
       <td>2023-04-10 12:00:00.339504875+00:00</td>
       <td>wxt.env.temp</td>
       <td>8.4</td>
@@ -915,10 +937,10 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>426685</th>
-      <td>2023-04-10 14:59:59.686477504+00:00</td>
+      <th>142912</th>
+      <td>2023-04-10 12:59:59.699540132+00:00</td>
       <td>wxt.env.temp</td>
-      <td>15.5</td>
+      <td>11.1</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -931,10 +953,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>426686</th>
-      <td>2023-04-10 14:59:59.768390286+00:00</td>
+      <th>142913</th>
+      <td>2023-04-10 12:59:59.774177079+00:00</td>
       <td>wxt.env.temp</td>
-      <td>15.5</td>
+      <td>11.1</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -947,10 +969,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>426687</th>
-      <td>2023-04-10 14:59:59.842427079+00:00</td>
+      <th>142914</th>
+      <td>2023-04-10 12:59:59.848843626+00:00</td>
       <td>wxt.env.temp</td>
-      <td>15.5</td>
+      <td>11.1</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -963,10 +985,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>426688</th>
-      <td>2023-04-10 14:59:59.916735651+00:00</td>
+      <th>142915</th>
+      <td>2023-04-10 12:59:59.922973433+00:00</td>
       <td>wxt.env.temp</td>
-      <td>15.5</td>
+      <td>11.1</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -979,10 +1001,10 @@ document.write(`
       <td>core</td>
     </tr>
     <tr>
-      <th>426689</th>
-      <td>2023-04-10 14:59:59.993573466+00:00</td>
+      <th>142916</th>
+      <td>2023-04-10 12:59:59.996916134+00:00</td>
       <td>wxt.env.temp</td>
-      <td>15.5</td>
+      <td>11.1</td>
       <td>000048b02d3ae336.ws-nxcore</td>
       <td>Pluginctl</td>
       <td>-9999.9</td>
@@ -996,7 +1018,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-<p>142230 rows × 13 columns</p>
+<p>47639 rows × 13 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1020,7 +1042,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/84383e22d53db800e1777db39d9a889a4dc165f7fad477eef8a3394530dc1e14.png" src="../../_images/84383e22d53db800e1777db39d9a889a4dc165f7fad477eef8a3394530dc1e14.png" />
+<img alt="../../_images/e8f6aab5bef2a3b26d9b8530d5176832bd3141c6bcf335452fcb1b5e34557146.png" src="../../_images/e8f6aab5bef2a3b26d9b8530d5176832bd3141c6bcf335452fcb1b5e34557146.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1065,7 +1087,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/693bb571158a0b89fdff22e2e678217709dc7e942a22377ec22cdc6e88800fcf.png" src="../../_images/693bb571158a0b89fdff22e2e678217709dc7e942a22377ec22cdc6e88800fcf.png" />
+<img alt="../../_images/855ecfc5751aa5f4da8dd2278baff345f4d3aca9fd4d30866c0100618befaafd.png" src="../../_images/855ecfc5751aa5f4da8dd2278baff345f4d3aca9fd4d30866c0100618befaafd.png" />
 </div>
 </div>
 </section>
@@ -1081,11 +1103,10 @@ you can also query specific variables using the ‘name’ filter</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the SAGE data client to access the data; use &#39;name&#39; filter</span>
 
-<span class="n">df_temp</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-04-08T00:00:00Z&quot;</span><span class="p">,</span>
-                                 <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T23:00:00Z&quot;</span><span class="p">,</span> 
+<span class="n">df_temp</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-04-09T00:00:00Z&quot;</span><span class="p">,</span>
+                                 <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-04-10T00:00:00Z&quot;</span><span class="p">,</span> 
                                     <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
                                         <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s1">&#39;wxt.env.temp&#39;</span><span class="p">,</span>
-                                        <span class="s2">&quot;plugin&quot;</span> <span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-wxt536&quot;</span><span class="p">,</span>
                                         <span class="s2">&quot;vsn&quot;</span> <span class="p">:</span> <span class="s2">&quot;W057&quot;</span><span class="p">,</span>
                                         <span class="s2">&quot;sensor&quot;</span> <span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
                                     <span class="p">}</span>
@@ -1100,6 +1121,221 @@ you can also query specific variables using the ‘name’ filter</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-04-09 00:00:00.067928914+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>14.4</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-04-09 00:00:00.141564285+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>14.4</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-04-09 00:00:00.220146207+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>14.4</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-04-09 00:00:00.300329683+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>14.4</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-04-09 00:00:00.374312322+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>14.4</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1143683</th>
+      <td>2023-04-09 23:59:59.694080255+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>16.6</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1143684</th>
+      <td>2023-04-09 23:59:59.768710002+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>16.6</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1143685</th>
+      <td>2023-04-09 23:59:59.843372677+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>16.6</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1143686</th>
+      <td>2023-04-09 23:59:59.924947588+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>16.6</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1143687</th>
+      <td>2023-04-09 23:59:59.999351284+00:00</td>
+      <td>wxt.env.temp</td>
+      <td>16.6</td>
+      <td>000048b02d3ae336.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae336</td>
+      <td>10.31.81.1:5000/local/waggle-wxt536</td>
+      <td>vaisala-wxt536</td>
+      <td>wxt-536</td>
+      <td>degree Celsius</td>
+      <td>W057</td>
+      <td>core</td>
+    </tr>
+  </tbody>
+</table>
+<p>1143688 rows × 13 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1119,6 +1355,9 @@ you can also query specific variables using the ‘name’ filter</p>
 <span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1650ea4cbb785b1c90d2fba187c2559d7c4f82d4272d3a56c87fe9c35c91f177.png" src="../../_images/1650ea4cbb785b1c90d2fba187c2559d7c4f82d4272d3a56c87fe9c35c91f177.png" />
 </div>
 </div>
 </section>
@@ -1144,9 +1383,14 @@ you can also query specific variables using the ‘name’ filter</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 226M May 12 17:58 wxt536_W057_ambient_temp.csv
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
-<li><p>666 MB is a large file for just one environmental parameter.</p></li>
+<li><p>225M MB is a large file for just one environmental parameter.</p></li>
 <li><p>It would be much larger if we saved all the observations for an hour (or day, or week, or month, etc)</p></li>
 </ul>
 <div class="admonition alert alert-info">
@@ -1168,10 +1412,15 @@ you can also query specific variables using the ‘name’ filter</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 runner docker 7.9M May 12 17:58 wxt536_W057_ambient_temp.parquet
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
-<li><p>Only 23MB saving the same data as this format!</p></li>
-<li><p>Less than 1% of the space taken up by the same data in CSV format!</p></li>
+<li><p>Only 8MB saving the same data as this format!</p></li>
+<li><p>Less than 4% of the space taken up by the same data in CSV format!</p></li>
 </ul>
 </section>
 </section>

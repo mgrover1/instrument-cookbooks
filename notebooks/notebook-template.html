@@ -161,6 +161,11 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../data-access.html">Data Access</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Transformation</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data-transformation/transform-wxt-data-xarray.html">Transform Weather Sensor Data from Waggle to an Xarray Dataset + Plot with ACT</a></li>
@@ -228,6 +233,24 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-rocket"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="http://binder.mypythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/notebook-template.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
       
       
       
@@ -474,6 +497,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world!
+</pre></div>
+</div>
+</div>
 </div>
 <section id="a-content-subsection">
 <h3>A content subsection<a class="headerlink" href="#a-content-subsection" title="Permalink to this heading">#</a></h3>
@@ -504,8 +532,8 @@ document.write(`
 <section id="header-levels">
 <h6>header levels<a class="headerlink" href="#header-levels" title="Permalink to this heading">#</a></h6>
 <p>as well <span class="math notranslate nohighlight">\(m = a * t / h\)</span> text! Similarly, you have access to other <span class="math notranslate nohighlight">\(\LaTeX\)</span> equation <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Typesetting%20Equations.html"><strong>functionality</strong></a> via MathJax (demo below from link),</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5517b9c4-d37a-49ad-ae5c-b0087db05397">
-<span class="eqno">()<a class="headerlink" href="#equation-5517b9c4-d37a-49ad-ae5c-b0087db05397" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6d14048-1c9f-419d-9eeb-010317857fb9">
+<span class="eqno">()<a class="headerlink" href="#equation-b6d14048-1c9f-419d-9eeb-010317857fb9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \dot{x} &amp; = \sigma(y-x) \\
 \dot{y} &amp; = \rho x - y - xz \\
 \dot{z} &amp; = -\beta z + xy
