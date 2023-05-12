@@ -15,145 +15,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import sage_data_client
-from bokeh.models.formatters import DatetimeTickFormatter
-import hvplot.pandas
-import hvplot.xarray
-import holoviews as hv
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import xarray as xr
-import matplotlib.pyplot as plt
-from metpy.plots import USCOUNTIES
-import metpy.calc as mpcalc
-import act
-import numpy as np
-import pandas as pd
-import warnings
-from bokeh.models import DatetimeTickFormatter
-
-def apply_formatter(plot, element):
-    plot.handles['xaxis'].formatter = DatetimeTickFormatter(hours='%m/%d/%Y \n %H:%M',
-                                                            minutes='%m/%d/%Y \n %H:%M',
-                                                            hourmin='%m/%d/%Y \n %H:%M',
-                                                            days='%m/%d/%Y \n %H:%M',
-                                                            months='%m/%d/%Y \n %H:%M')
-xr.set_options(keep_attrs=True)
-warnings.filterwarnings("ignore")
-hv.extension("bokeh")
-
-
-
-# Dictionary for renaming to standard names
-variable_rename_dict = {'wxt.env.humidity':'relative_humidity',
-                        'wxt.env.pressure':'air_pressure',
-                        'wxt.env.temp':'air_temperature',
-                        'wxt.heater.temp':'heater_temperature',
-                        'wxt.heater.volt':'heater_voltage',
-                        'wxt.rain.accumulation':'rain_accumulation',
-                        'wxt.wind.direction':'wind_direction',
-                        'wxt.wind.speed':'wind_speed',
-                        'sys.gps.lat':'latitude',
-                        'sys.gps.lon':'longitude',
-                    }
-
-# Dictionary for units that are missing
-units_dict = {'wxt.env.temp': 'degC',
-              'wxt.env.pressure':'hPa',
-              'wxt.env.humidity':'percent',
-              'wxt.wind.speed':'m/s',
-              'wxt.wind.direction':'degrees'}
-
-def generate_data_array(df, variable, rename_variable_dict=variable_rename_dict):
-    new_variable_name = rename_variable_dict[variable]
-    df_variable= df.loc[df.name == variable]
-    ds = df_variable.to_xarray().rename({'value':new_variable_name,
-                                         'timestamp':'time',
-                                         'meta.vsn':'node'})
-    ds[new_variable_name].attrs['units'] = df_variable['meta.units'].values[0]
-    ds['time'] = pd.to_datetime(ds.time)
-    ds.attrs['datastream'] = ds.node.values[0]
-    return ds[[new_variable_name]]
-
-def generate_dataset(df, variables, rename_variable_dict=variable_rename_dict):
-    reindexed = df.set_index(['meta.vsn', 'timestamp'])
-    return xr.merge([generate_data_array(reindexed, variable) for variable in variables])
-
-
-# Query and load for n numbder of days
-wxt_df = sage_data_client.query(
-    start="-12h",
-    filter={
-        "sensor": "vaisala-wxt536",
-        "name": "wxt.env.*"
-    }
-)
-
-wxt_df1 = sage_data_client.query(
-    start="-12h",
-    filter={
-        "sensor": "vaisala-wxt536",
-        "name": "wxt.wind.*"
-    }
-)
-
-wxt_df = pd.concat([wxt_df, wxt_df1])
-
-# Discover what variables we have and what to load into xarray
-wxt_variables = wxt_df.name.unique()
-wxt_df['meta.units'] = wxt_df.name.map(units_dict)
-wxt_ds = generate_dataset(wxt_df, wxt_variables).squeeze().metpy.parse_cf()
-wxt_ds['air_dewpoint_temperature'] = mpcalc.dewpoint_from_relative_humidity(wxt_ds.air_temperature, wxt_ds.relative_humidity)
-
-# Resample to 1 minute freqency
-minute_ds = wxt_ds.resample(time='1T').mean()
-
-plots = []
-temp_plot = wxt_ds.air_temperature.hvplot(color='red',
-                                          label='Air Temperature (degC)')
-dewp_plot = wxt_ds.air_dewpoint_temperature.hvplot(color='green',
-                                                   label='Dewpoint Temperature (degC)')
-plots.append((temp_plot * dewp_plot).opts(hooks=[apply_formatter]))
-meteogram_variables = ['wind_speed', 'wind_direction']
-for variable in meteogram_variables:
-    plots.append((wxt_ds[variable].hvplot.line(label='10 Hz Data') * 
-                 minute_ds[variable].hvplot.line(label='1 Minute Data')).opts(hooks=[apply_formatter]))
+if minute_ds is not None:
+    WindDisplay = act.plotting.WindRoseDisplay(minute_ds, figsize=(6, 8), subplot_shape=(1,))
+    WindDisplay.plot(
+        'wind_direction', 'wind_speed', spd_bins=np.linspace(0, 20, 5), num_dirs=30, tick_interval=2, subplot_index=(0,)
+    )
+    plt.show()
+else:
+    print('Issue with wxt datastream')
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3990/3820344723.py[0m in [0;36m?[0;34m()[0m
-[1;32m     84[0m [0;34m[0m[0m
-[1;32m     85[0m [0;31m# Discover what variables we have and what to load into xarray[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     86[0m [0mwxt_variables[0m [0;34m=[0m [0mwxt_df[0m[0;34m.[0m[0mname[0m[0;34m.[0m[0munique[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     87[0m [0mwxt_df[0m[0;34m[[0m[0;34m'meta.units'[0m[0;34m][0m [0;34m=[0m [0mwxt_df[0m[0;34m.[0m[0mname[0m[0;34m.[0m[0mmap[0m[0;34m([0m[0munits_dict[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 88[0;31m [0mwxt_ds[0m [0;34m=[0m [0mgenerate_dataset[0m[0;34m([0m[0mwxt_df[0m[0;34m,[0m [0mwxt_variables[0m[0;34m)[0m[0;34m.[0m[0msqueeze[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mmetpy[0m[0;34m.[0m[0mparse_cf[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     89[0m [0mwxt_ds[0m[0;34m[[0m[0;34m'air_dewpoint_temperature'[0m[0;34m][0m [0;34m=[0m [0mmpcalc[0m[0;34m.[0m[0mdewpoint_from_relative_humidity[0m[0;34m([0m[0mwxt_ds[0m[0;34m.[0m[0mair_temperature[0m[0;34m,[0m [0mwxt_ds[0m[0;34m.[0m[0mrelative_humidity[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     90[0m [0;34m[0m[0m
-[1;32m     91[0m [0;31m# Resample to 1 minute freqency[0m[0;34m[0m[0;34m[0m[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[3], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mif[39;00m [43mminute_ds[49m [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m      2[0m     WindDisplay [38;5;241m=[39m act[38;5;241m.[39mplotting[38;5;241m.[39mWindRoseDisplay(minute_ds, figsize[38;5;241m=[39m([38;5;241m6[39m, [38;5;241m8[39m), subplot_shape[38;5;241m=[39m([38;5;241m1[39m,))
+[1;32m      3[0m     WindDisplay[38;5;241m.[39mplot(
+[1;32m      4[0m         [38;5;124m'[39m[38;5;124mwind_direction[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mwind_speed[39m[38;5;124m'[39m, spd_bins[38;5;241m=[39mnp[38;5;241m.[39mlinspace([38;5;241m0[39m, [38;5;241m20[39m, [38;5;241m5[39m), num_dirs[38;5;241m=[39m[38;5;241m30[39m, tick_interval[38;5;241m=[39m[38;5;241m2[39m, subplot_index[38;5;241m=[39m([38;5;241m0[39m,)
+[1;32m      5[0m     )
 
-[0;32m/tmp/ipykernel_3990/3820344723.py[0m in [0;36m?[0;34m(df, variables, rename_variable_dict)[0m
-[1;32m     61[0m [0;32mdef[0m [0mgenerate_dataset[0m[0;34m([0m[0mdf[0m[0;34m,[0m [0mvariables[0m[0;34m,[0m [0mrename_variable_dict[0m[0;34m=[0m[0mvariable_rename_dict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 62[0;31m     [0mreindexed[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mset_index[0m[0;34m([0m[0;34m[[0m[0;34m'meta.vsn'[0m[0;34m,[0m [0;34m'timestamp'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     63[0m     [0;32mreturn[0m [0mxr[0m[0;34m.[0m[0mmerge[0m[0;34m([0m[0;34m[[0m[0mgenerate_data_array[0m[0;34m([0m[0mreindexed[0m[0;34m,[0m [0mvariable[0m[0;34m)[0m [0;32mfor[0m [0mvariable[0m [0;32min[0m [0mvariables[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/util/_decorators.py[0m in [0;36m?[0;34m(*args, **kwargs)[0m
-[1;32m    327[0m                     [0mmsg[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0marguments[0m[0;34m=[0m[0m_format_argument_list[0m[0;34m([0m[0mallow_args[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    328[0m                     [0mFutureWarning[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    329[0m                     [0mstacklevel[0m[0;34m=[0m[0mfind_stack_level[0m[0;34m([0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    330[0m                 )
-[0;32m--> 331[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m/usr/share/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py[0m in [0;36m?[0;34m(self, keys, drop, append, inplace, verify_integrity)[0m
-[1;32m   6008[0m                     [0;32mif[0m [0;32mnot[0m [0mfound[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6009[0m                         [0mmissing[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mcol[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6010[0m [0;34m[0m[0m
-[1;32m   6011[0m         [0;32mif[0m [0mmissing[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 6012[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0;34mf"None of {missing} are in the columns"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   6013[0m [0;34m[0m[0m
-[1;32m   6014[0m         [0;32mif[0m [0minplace[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6015[0m             [0mframe[0m [0;34m=[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mKeyError[0m: "None of ['meta.vsn'] are in the columns"
+[0;31mNameError[0m: name 'minute_ds' is not defined
 
