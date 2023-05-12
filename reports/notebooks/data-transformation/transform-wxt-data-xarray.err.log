@@ -22,11 +22,11 @@ wxt_ds
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3955/1563727890.py[0m in [0;36m?[0;34m()[0m
+[0;32m/tmp/ipykernel_3917/1563727890.py[0m in [0;36m?[0;34m()[0m
 [0;32m----> 1[0;31m [0mwxt_ds[0m [0;34m=[0m [0mgenerate_dataset[0m[0;34m([0m[0mwxt_df[0m[0;34m,[0m [0mwxt_variables[0m[0;34m)[0m[0;34m.[0m[0msqueeze[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0mwxt_ds[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/tmp/ipykernel_3955/4226391414.py[0m in [0;36m?[0;34m(df, variables, rename_variable_dict)[0m
+[0;32m/tmp/ipykernel_3917/4226391414.py[0m in [0;36m?[0;34m(df, variables, rename_variable_dict)[0m
 [1;32m     24[0m [0;32mdef[0m [0mgenerate_dataset[0m[0;34m([0m[0mdf[0m[0;34m,[0m [0mvariables[0m[0;34m,[0m [0mrename_variable_dict[0m[0;34m=[0m[0mvariable_rename_dict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 25[0;31m     [0mreindexed[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mset_index[0m[0;34m([0m[0;34m[[0m[0;34m'meta.vsn'[0m[0;34m,[0m [0;34m'timestamp'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m     26[0m     [0;32mreturn[0m [0mxr[0m[0;34m.[0m[0mmerge[0m[0;34m([0m[0;34m[[0m[0mgenerate_data_array[0m[0;34m([0m[0mreindexed[0m[0;34m,[0m [0mvariable[0m[0;34m)[0m [0;32mfor[0m [0mvariable[0m [0;32min[0m [0mvariables[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
