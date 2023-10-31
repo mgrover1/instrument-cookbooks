@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ARM Notebook Template &#8212; CROCUS Instrument Cookbooks</title>
+    <title>CROCUS Notebook Template &#8212; CROCUS Instrument Cookbooks</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -67,6 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/notebook-template';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ceilometer Quicklooks" href="quicklooks/ceilometer.html" />
+    <link rel="prev" title="Read Data from a Vaisala WXT536" href="crocus_level1_node/vaisala_wxt536.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -77,6 +80,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -137,13 +149,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
   
   
 </a></div>
@@ -161,14 +174,23 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../data-access.html">Data Access</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CROCUS Notebook Template</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Transformation</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Study</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="data-transformation/transform-wxt-data-xarray.html">Transform Weather Sensor Data from Waggle to an Xarray Dataset + Plot with ACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case-study/lake-breeze-ci.html">CROCUS Lake Breeze (May 7th, 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case-study/pneumonia-front.html">Pneumonia Front (May 16, 2023)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ambient Weather Stations</span></p>
 <ul class="nav bd-sidenav">
@@ -177,11 +199,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Doppler Lidar</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="doppler-lidar/Working-With-Ingested-CROCS-Data.html">Working With Data From The CROCUS Doppler LIDAR Deployed During AGES+</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
 </ul>
 
     </div>
@@ -236,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="http://binder.mypythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/notebook-template.ipynb" target="_blank"
+      <li><a href="https://binder.projectpythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/notebook-template.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,10 +359,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -350,7 +370,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -367,7 +387,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ARM Notebook Template</h1>
+    <h1>CROCUS Notebook Template</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -380,6 +400,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-content-section">Your first content section</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-content-subsection">A content subsection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-content-subsection">Another content subsection</a></li>
@@ -420,9 +441,9 @@ document.write(`
 <div><p><code class="docutils literal notranslate"><span class="pre">![&lt;image</span> <span class="pre">title&gt;](http://link.com/to/image.png</span> <span class="pre">&quot;image</span> <span class="pre">alt</span> <span class="pre">text&quot;)</span></code></p>
 </div></blockquote>
 <p>or edit this cell to see raw HTML <code class="docutils literal notranslate"><span class="pre">img</span></code> demonstration. This is preferred if you need to shrink your embedded image. <strong>Either way be sure to include <code class="docutils literal notranslate"><span class="pre">alt</span></code> text for any embedded images to make your content more accessible.</strong></p>
-<p><a class="reference internal" href="../_images/arm_logo.png"><img alt="Project Pythia Logo" src="../_images/arm_logo.png" style="width: 250px;" /></a></img></p>
-<section class="tex2jax_ignore mathjax_ignore" id="arm-notebook-template">
-<h1>ARM Notebook Template<a class="headerlink" href="#arm-notebook-template" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="../_images/CROCUS_Logo.svg"><img alt="Project Pythia Logo" src="../_images/CROCUS_Logo.svg" width="500" /></a></img></p>
+<section class="tex2jax_ignore mathjax_ignore" id="crocus-notebook-template">
+<h1>CROCUS Notebook Template<a class="headerlink" href="#crocus-notebook-template" title="Permalink to this heading">#</a></h1>
 <p><strong>Note - this is a slightly modified version of the Project Pythia notebook template</strong></p>
 <p>Next, title your notebook appropriately with a top-level Markdown header, <code class="docutils literal notranslate"><span class="pre">#</span></code>. Do not use this level header anywhere else in the notebook. Our book build process will use this title in the navbar, table of contents, etc. Keep it short, keep it descriptive. Follow this with a <code class="docutils literal notranslate"><span class="pre">---</span></code> cell to visually distinguish the transition to the prerequisites section.</p>
 <hr class="docutils" />
@@ -450,17 +471,17 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Intro to Cartopy</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/waggle-sensor">Intro to Waggle Sensors</a></p></td>
+<td><p>Helpful</p></td>
+<td><p>Familiarity with Waggle Sensors</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/sagecontinuum/sage-data-client">Waggle/Sage Data Client</a></p></td>
 <td><p>Necessary</p></td>
-<td><p></p></td>
+<td><p>Accessing Data</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/data-formats/netcdf-cf.html">Understanding of NetCDF</a></p></td>
-<td><p>Helpful</p></td>
-<td><p>Familiarity with metadata structure</p></td>
-</tr>
-<tr class="row-even"><td><p>Project management</p></td>
-<td><p>Helpful</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/pandas.html">Working with Pandas Dataframes</a></p></td>
+<td><p>Necessary</p></td>
+<td><p>Understanding Data Object</p></td>
 </tr>
 </tbody>
 </table>
@@ -481,10 +502,258 @@ document.write(`
 <p>Begin your body of content with another <code class="docutils literal notranslate"><span class="pre">---</span></code> divider before continuing into this section, then remove this body text and populate the following code cell with all necessary Python imports <strong>up-front</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sage_data_client</span>
 </pre></div>
 </div>
 </div>
+</div>
+</section>
+<section id="data-access">
+<h2>Data Access<a class="headerlink" href="#data-access" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the July 2, 2023 case between 12 and 13 UTC (7 to 8 AM local time)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="s2">&quot;2023-07-02T12:00:00Z&quot;</span>
+<span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;2023-07-02T13:00:00Z&quot;</span>
+
+<span class="c1"># Filter for a single node - in this case, the Northeastern Illinois University node</span>
+<span class="n">node</span> <span class="o">=</span> <span class="s2">&quot;W08D&quot;</span>
+
+<span class="c1"># Search for the weather data, collected by the wxt sensor</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                            <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> 
+                            <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="n">node</span><span class="p">,</span>
+                                <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="n">sensor</span>
+                            <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the timestamp as the index</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+    <tr>
+      <th>timestamp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-07-02 12:00:00.029156535+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.107252119+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.206164123+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.283311181+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:00:00.364271449+00:00</th>
+      <td>wxt.env.humidity</td>
+      <td>100.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>percent</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.600882716+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.684669667+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.760763484+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.841247667+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2023-07-02 12:59:59.920791677+00:00</th>
+      <td>wxt.wind.speed</td>
+      <td>1.5</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>waggle-wxt536</td>
+      <td>-9999.9</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/jrobrien/waggle-wxt...</td>
+      <td>vaisala-wxt536</td>
+      <td>waggle-wxt536</td>
+      <td>meters per second</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+  </tbody>
+</table>
+<p>350864 rows × 12 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="your-first-content-section">
@@ -532,8 +801,8 @@ document.write(`
 <section id="header-levels">
 <h6>header levels<a class="headerlink" href="#header-levels" title="Permalink to this heading">#</a></h6>
 <p>as well <span class="math notranslate nohighlight">\(m = a * t / h\)</span> text! Similarly, you have access to other <span class="math notranslate nohighlight">\(\LaTeX\)</span> equation <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Typesetting%20Equations.html"><strong>functionality</strong></a> via MathJax (demo below from link),</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1d915fd-60f6-40db-b614-91e7b96868e5">
-<span class="eqno">()<a class="headerlink" href="#equation-b1d915fd-60f6-40db-b614-91e7b96868e5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f5ba9f51-95b2-4369-8327-23bd5ae8d686">
+<span class="eqno">(1)<a class="headerlink" href="#equation-f5ba9f51-95b2-4369-8327-23bd5ae8d686" title="Permalink to this equation">#</a></span>\[\begin{align}
 \dot{x} &amp; = \sigma(y-x) \\
 \dot{y} &amp; = \rho x - y - xz \\
 \dot{z} &amp; = -\beta z + xy
@@ -614,16 +883,30 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
+    <a class="left-prev"
+       href="crocus_level1_node/vaisala_wxt536.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Read Data from a Vaisala WXT536</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quicklooks/ceilometer.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ceilometer Quicklooks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-
                 </footer>
               
             </div>
@@ -641,6 +924,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-access">Data Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-content-section">Your first content section</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-content-subsection">A content subsection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-content-subsection">Another content subsection</a></li>
@@ -712,8 +996,8 @@ By CROCUS Measurement Strategy Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

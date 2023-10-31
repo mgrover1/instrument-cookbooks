@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -65,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-access';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Ceilometer Quicklooks" href="notebooks/quicklooks/ceilometer.html" />
+    <link rel="next" title="Read Data from a Vaisala WXT536" href="notebooks/crocus_level1_node/vaisala_wxt536.html" />
     <link rel="prev" title="CROCUS Instrument Cookbooks" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -77,6 +78,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -137,13 +147,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="_static/CROCUS_Logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
   
   
 </a></div>
@@ -161,14 +172,23 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Access</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/notebook-template.html">CROCUS Notebook Template</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Transformation</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Study</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/data-transformation/transform-wxt-data-xarray.html">Transform Weather Sensor Data from Waggle to an Xarray Dataset + Plot with ACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/case-study/lake-breeze-ci.html">CROCUS Lake Breeze (May 7th, 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/case-study/pneumonia-front.html">Pneumonia Front (May 16, 2023)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ambient Weather Stations</span></p>
 <ul class="nav bd-sidenav">
@@ -177,11 +197,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Doppler Lidar</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/doppler-lidar/Working-With-Ingested-CROCS-Data.html">Working With Data From The CROCUS Doppler LIDAR Deployed During AGES+</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="notebooks/doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
 </ul>
 
     </div>
@@ -290,10 +308,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -301,7 +319,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -328,12 +346,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waggle-hosted-data">Waggle-hosted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus-data-transfer">Globus Data Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -349,7 +371,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-access">
 <h1>Data Access<a class="headerlink" href="#data-access" title="Permalink to this heading">#</a></h1>
-<p>All of the data from CROCUS is open and freely available. Currently, you can access the data using <a class="reference external" href="https://www.globus.org/">globus</a>.</p>
+<p>All of the data from CROCUS is open and freely available.</p>
+<section id="waggle-hosted-data">
+<h2>Waggle-hosted Data<a class="headerlink" href="#waggle-hosted-data" title="Permalink to this heading">#</a></h2>
+<p>Most of the observations can be accessed using the Waggle cyberinfrastructure. We encourage people to check out the CROCUS node overview page, https://crocus.sagecontinuum.org/nodes. From there, you can select which location you are interested in, and find sample scripts to download the data. Data can be downloaded using the <a class="reference external" href="https://github.com/sagecontinuum/sage-data-client"><code class="docutils literal notranslate"><span class="pre">sage-data-client</span></code></a>, with an example provided in the <a class="reference external" href="https://crocus-urban.github.io/instrument-cookbooks/notebooks/crocus_level1_node/vaisala_wxt536.html">WXT sensor cookbook</a>.</p>
+</section>
+<section id="globus-data-transfer">
+<h2>Globus Data Transfer<a class="headerlink" href="#globus-data-transfer" title="Permalink to this heading">#</a></h2>
+<p>For sensors not yet integrated into the Waggle cyberinfrastructure, we use <a class="reference external" href="https://www.globus.org/">Globus</a> for data transfer.</p>
 <p>Globus is a free software that allows to safely transfer data between two different points (endpoints). For example, the data from one instrument might be located on a computer at the observational site (one endpoint) and you would like to transfer that data to your local computer (another endpoint).</p>
 <p>We encourage you to read over the how to get started guide from their documentation</p>
 <ul class="simple">
@@ -360,14 +389,14 @@ document.write(`
 <p>The datasets have not been quality corrected or controlled. This is raw data.</p>
 </div>
 <section id="doppler-lidar">
-<h2>Doppler LiDAR<a class="headerlink" href="#doppler-lidar" title="Permalink to this heading">#</a></h2>
+<h3>Doppler LiDAR<a class="headerlink" href="#doppler-lidar" title="Permalink to this heading">#</a></h3>
 <p>The Doppler LiDAR instrument collects information about the velocity and scattering properties across different times and distances from the instrument, which in most cases for this project, is the ground.</p>
 <p>We encourage you read the documentation about a Doppler LiDAR similar to the one used for CROCUS on the Atmospheric Radiation Measurement user facility page.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arm.gov/capabilities/instruments/dl">Link to information about the Doppler LiDAR instrument</a></p></li>
 </ul>
 <section id="link-to-the-doppler-lidar-data">
-<h3>Link to the Doppler LiDAR data<a class="headerlink" href="#link-to-the-doppler-lidar-data" title="Permalink to this heading">#</a></h3>
+<h4>Link to the Doppler LiDAR data<a class="headerlink" href="#link-to-the-doppler-lidar-data" title="Permalink to this heading">#</a></h4>
 <p>Here is a link to the data:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://app.globus.org/file-manager?origin_id=d8da717e-ca5c-11ed-9622-4b6fcc022e5a&amp;origin_path=%2F">Link to the LiDAR data globus endpoint</a></p></li>
@@ -375,17 +404,18 @@ document.write(`
 </section>
 </section>
 <section id="sodar">
-<h2>SODAR<a class="headerlink" href="#sodar" title="Permalink to this heading">#</a></h2>
+<h3>SODAR<a class="headerlink" href="#sodar" title="Permalink to this heading">#</a></h3>
 <p>The SODAR (Sonic Detection and Ranging) wind profiler measures wind profiles and backscattered signal strength (from the ARM instrument guide).</p>
 <p>We encourage you read the documentation about a Doppler LiDAR similar to the one used for CROCUS on the ARM user facility webpage.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arm.gov/capabilities/instruments/sodar">Link to information about the SODAR</a></p></li>
 </ul>
 <section id="link-to-the-sodar-data">
-<h3>Link to the SODAR data<a class="headerlink" href="#link-to-the-sodar-data" title="Permalink to this heading">#</a></h3>
+<h4>Link to the SODAR data<a class="headerlink" href="#link-to-the-sodar-data" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://app.globus.org/file-manager?origin_id=160b4496-b6f4-11ed-a982-5f0e34a3cc4f&amp;origin_path=%2F">Link to the SODAR data globus endpoint</a></p></li>
 </ul>
+</section>
 </section>
 </section>
 </section>
@@ -415,11 +445,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="README.html"
@@ -431,18 +460,15 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="notebooks/quicklooks/ceilometer.html"
+       href="notebooks/crocus_level1_node/vaisala_wxt536.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ceilometer Quicklooks</p>
+        <p class="prev-next-title">Read Data from a Vaisala WXT536</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -457,12 +483,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#waggle-hosted-data">Waggle-hosted Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus-data-transfer">Globus Data Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doppler-lidar">Doppler LiDAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-doppler-lidar-data">Link to the Doppler LiDAR data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sodar">SODAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-the-sodar-data">Link to the SODAR data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -512,8 +542,8 @@ By CROCUS Measurement Strategy Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,0 +1,1113 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; CROCUS Instrument Cookbooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/METEK_Sonic3D_access';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    CROCUS Instrument Cookbooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-access.html">Data Access</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebook-template.html">CROCUS Notebook Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Study</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="case-study/lake-breeze-ci.html">CROCUS Lake Breeze (May 7th, 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case-study/pneumonia-front.html">Pneumonia Front (May 16, 2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ambient Weather Stations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ambient-weather/read-ambient-data.html">Read, Process, and Visualize Ambient Weather Station Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambient-weather/visualize-past-obs.html">Visualize Latest Observations from the Ambient Weather Stations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Doppler Lidar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="doppler-lidar/Working-With-Ingested-CROCS-Data.html">Working With Data From The CROCUS Doppler LIDAR Deployed During AGES+</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/METEK_Sonic3D_access.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://jupyter-open.olcf.ornl.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/CROCUS-Urban/instrument-cookbooks&urlpath=lab/tree/instrument-cookbooks/notebooks/notebooks/METEK_Sonic3D_access.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/METEK_Sonic3D_access.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sage_data_client</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib.dates</span> <span class="kn">import</span> <span class="n">DateFormatter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-07-09T00:00:00Z&quot;</span><span class="p">,</span>
+                            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-07-09T01:00:00Z&quot;</span><span class="p">,</span> 
+                            <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-sonic3d&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W039&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;sensor&quot;</span><span class="p">:</span> <span class="s2">&quot;metek-sonic3D&quot;</span>
+                            <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.description</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-07-09 00:00:00.025172660+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.149</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-07-09 00:00:00.058506456+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.157</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-07-09 00:00:00.091937791+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-07-09 00:00:00.126452480+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-07-09 00:00:00.160199343+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.150</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>431973</th>
+      <td>2023-07-09 00:59:59.851615551+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.002</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431974</th>
+      <td>2023-07-09 00:59:59.884990547+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.002</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431975</th>
+      <td>2023-07-09 00:59:59.918300549+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.009</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431976</th>
+      <td>2023-07-09 00:59:59.951650872+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>0.001</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>431977</th>
+      <td>2023-07-09 00:59:59.985170224+00:00</td>
+      <td>sonic3d.wwind</td>
+      <td>-0.006</td>
+      <td>Vertical wind</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>m/s</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+  </tbody>
+</table>
+<p>431978 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=431978, step=1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;timestamp&#39;, &#39;name&#39;, &#39;value&#39;, &#39;meta.description&#39;, &#39;meta.host&#39;,
+       &#39;meta.job&#39;, &#39;meta.missing&#39;, &#39;meta.node&#39;, &#39;meta.plugin&#39;, &#39;meta.sensor&#39;,
+       &#39;meta.task&#39;, &#39;meta.units&#39;, &#39;meta.vsn&#39;, &#39;meta.zone&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sonic3d.uwind&#39;, &#39;sonic3d.temp&#39;, &#39;sonic3d.wwind&#39;, &#39;sonic3d.vwind&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sonic3d.temp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.description</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.missing</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.sensor</th>
+      <th>meta.task</th>
+      <th>meta.units</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-07-09 00:00:00.025172660+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.149</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-07-09 00:00:00.058506456+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.157</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-07-09 00:00:00.091937791+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-07-09 00:00:00.126452480+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.151</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-07-09 00:00:00.160199343+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.150</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>107989</th>
+      <td>2023-07-09 00:59:59.851615551+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.887</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107990</th>
+      <td>2023-07-09 00:59:59.884990547+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.872</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107991</th>
+      <td>2023-07-09 00:59:59.918300549+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.871</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107992</th>
+      <td>2023-07-09 00:59:59.951650872+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.847</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>107993</th>
+      <td>2023-07-09 00:59:59.985170224+00:00</td>
+      <td>sonic3d.temp</td>
+      <td>22.830</td>
+      <td>Sonic Temperature</td>
+      <td>000048b02d15bc8c.ws-nxcore</td>
+      <td>Pluginctl</td>
+      <td>-9999.9</td>
+      <td>000048b02d15bc8c</td>
+      <td>10.31.81.1:5000/local/waggle-sonic3d</td>
+      <td>metek-sonic3D</td>
+      <td>sonictest</td>
+      <td>degrees Celsius</td>
+      <td>W039</td>
+      <td>core</td>
+    </tr>
+  </tbody>
+</table>
+<p>107994 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Define Format of how the date is displayed</span>
+<span class="n">date_form</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sonic3d.temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                           <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                                           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Sonic Temperature </span><span class="se">\n</span><span class="s1"> [Degree Celsius]&#39;</span><span class="p">,</span>
+                                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Dev Node (W039) - METEK USonic3&#39;</span><span class="p">,</span>
+                                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
+                                          <span class="p">)</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">date_form</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/aba2ca4b8b327ec71839a69ebd01564950236bb500d0554a2c8d54237efa8b26.png" src="../_images/aba2ca4b8b327ec71839a69ebd01564950236bb500d0554a2c8d54237efa8b26.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Define Format of how the date is displayed</span>
+<span class="n">date_form</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sonic3d.uwind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                           <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                                           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Wind Speed </span><span class="se">\n</span><span class="s1"> [meters per second]&#39;</span><span class="p">,</span>
+                                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Dev Node (W039) - METEK USonic3&#39;</span><span class="p">,</span>
+                                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>
+                                           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span>
+                                          <span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sonic3d.vwind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                                <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                                                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Dev Node (W039) - METEK USonic3&#39;</span><span class="p">,</span>
+                                                <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>
+                                                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span>
+                                               <span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sonic3d.wwind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                                                <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;UTC Time </span><span class="se">\n</span><span class="s1"> [HH:MM:SS]&#39;</span><span class="p">,</span>
+                                                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CROCUS Dev Node (W039) - METEK USonic3&#39;</span><span class="p">,</span>
+                                                <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>
+                                                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span>
+                                               <span class="p">)</span>
+<span class="c1"># Set the left hand y-axis label and color to match variable displayed</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed </span><span class="se">\n</span><span class="s1"> [meters per second]&#39;</span><span class="p">,</span> 
+               <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+               <span class="p">)</span>
+<span class="c1"># Change left hand y-axis tick colors to match variable displayed</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Note: Use the Pandas DataFrame &#39;loc&#39; functionality to search the object for the ambient temp</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">date_form</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Uwind&#39;</span><span class="p">,</span> <span class="s1">&#39;Vwind&#39;</span><span class="p">,</span> <span class="s1">&#39;Wwind&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1f7712da0&gt;
+</pre></div>
+</div>
+<img alt="../_images/a886be71bc9edc5cd7600b63af72d678013c4d1d7f3506cafc3f2b99eac90444.png" src="../_images/a886be71bc9edc5cd7600b63af72d678013c4d1d7f3506cafc3f2b99eac90444.png" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CROCUS Measurement Strategy Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
