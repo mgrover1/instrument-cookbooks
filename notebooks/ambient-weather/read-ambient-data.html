@@ -211,6 +211,13 @@
 
 <li class="toctree-l1"><a class="reference internal" href="../doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Micro Rain Radar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../mrr/Crocus-Thredds-Cookbook.html"><strong>L</strong>oading <strong>A</strong>nd <strong>V</strong>isualizing mrr dat<strong>A</strong> (LAVA)</a></li>
+
+
+
+</ul>
 
     </div>
 </nav></div>
@@ -461,7 +468,7 @@ document.write(`
   }
 
   var force = true;
-  var py_version = '3.3.4'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var py_version = '3.4.0'.replace('rc', '-rc.').replace('.dev', '-dev.');
   var reloading = false;
   var Bokeh = root.Bokeh;
 
@@ -517,37 +524,8 @@ document.write(`
 
     var skip = [];
     if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
-      require(["jspanel"], function(jsPanel) {
-	window.jsPanel = jsPanel
-	on_load()
-      })
-      require(["jspanel-modal"], function() {
-	on_load()
-      })
-      require(["jspanel-tooltip"], function() {
-	on_load()
-      })
-      require(["jspanel-hint"], function() {
-	on_load()
-      })
-      require(["jspanel-layout"], function() {
-	on_load()
-      })
-      require(["jspanel-contextmenu"], function() {
-	on_load()
-      })
-      require(["jspanel-dock"], function() {
-	on_load()
-      })
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 9;
+      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
+      root._bokeh_is_loading = css_urls.length + 0;
     } else {
       root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
     }
@@ -574,21 +552,6 @@ document.write(`
       element.href = url;
       console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
       document.body.appendChild(element);
-    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
     }    var existing_scripts = []
     var scripts = document.getElementsByTagName('script')
     for (var i = 0; i < scripts.length; i++) {
@@ -661,7 +624,7 @@ document.write(`
     document.body.appendChild(element);
   }
 
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.3.4.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.3.4.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.3.4.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.3.4.min.js", "https://cdn.holoviz.org/panel/1.3.8/dist/panel.min.js"];
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.0.min.js", "https://cdn.holoviz.org/panel/1.4.0/dist/panel.min.js"];
   var js_modules = [];
   var js_exports = {};
   var css_urls = [];
@@ -987,11 +950,11 @@ if (window.Jupyter !== undefined) {
   background-color: transparent !important;
 }
 </style></div><div class="output text_html"><div id='p1002'>
-  <div id="fb0134fb-cbc3-4201-8022-1fb947e669e9" data-root-id="p1002" style="display: contents;"></div>
+  <div id="f8333242-23a6-4f4d-8134-41095559c9ad" data-root-id="p1002" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
-  var docs_json = {"611feaf4-63d0-40f7-9c44-e670825c3780":{"version":"3.3.4","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"p1002"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"p1003","attributes":{"plot_id":"p1002","comm_id":"d9385719dbcd425cb29e88205ad3699d","client_comm_id":"a08edb67f2df44ecb479e6f0a890ceaf"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"copy_to_clipboard1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"value","kind":"Any","default":null}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
-  var render_items = [{"docid":"611feaf4-63d0-40f7-9c44-e670825c3780","roots":{"p1002":"fb0134fb-cbc3-4201-8022-1fb947e669e9"},"root_ids":["p1002"]}];
+  var docs_json = {"ea6db209-1585-4d8b-9186-3f9adb110f41":{"version":"3.4.0","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"p1002"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"p1003","attributes":{"plot_id":"p1002","comm_id":"de2cebe0e0ca44b5bd81208339b63520","client_comm_id":"a7801e50e144493fa3a3d768a0c78738"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"},{"name":"gap","kind":"Any","default":""}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"copy_to_clipboard1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"value","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"ea6db209-1585-4d8b-9186-3f9adb110f41","roots":{"p1002":"f8333242-23a6-4f4d-8134-41095559c9ad"},"root_ids":["p1002"]}];
   var docs = Object.values(docs_json)
   if (!docs) {
     return
@@ -1056,7 +1019,7 @@ if (window.Jupyter !== undefined) {
   }
 
   var force = true;
-  var py_version = '3.3.4'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var py_version = '3.4.0'.replace('rc', '-rc.').replace('.dev', '-dev.');
   var reloading = true;
   var Bokeh = root.Bokeh;
 
@@ -1112,37 +1075,8 @@ if (window.Jupyter !== undefined) {
 
     var skip = [];
     if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
-      require(["jspanel"], function(jsPanel) {
-	window.jsPanel = jsPanel
-	on_load()
-      })
-      require(["jspanel-modal"], function() {
-	on_load()
-      })
-      require(["jspanel-tooltip"], function() {
-	on_load()
-      })
-      require(["jspanel-hint"], function() {
-	on_load()
-      })
-      require(["jspanel-layout"], function() {
-	on_load()
-      })
-      require(["jspanel-contextmenu"], function() {
-	on_load()
-      })
-      require(["jspanel-dock"], function() {
-	on_load()
-      })
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 9;
+      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
+      root._bokeh_is_loading = css_urls.length + 0;
     } else {
       root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
     }
@@ -1169,21 +1103,6 @@ if (window.Jupyter !== undefined) {
       element.href = url;
       console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
       document.body.appendChild(element);
-    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.3.8/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.3.8/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
     }    var existing_scripts = []
     var scripts = document.getElementsByTagName('script')
     for (var i = 0; i < scripts.length; i++) {
@@ -1694,15 +1613,15 @@ if (window.Jupyter !== undefined) {
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:230,</span> in <span class="ni">concat</span><span class="nt">(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="n">first_obj</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">peek_at</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:228,</span> in <span class="ni">concat</span><span class="nt">(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">228</span>     <span class="n">first_obj</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">peek_at</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:194,</span> in <span class="ni">peek_at</span><span class="nt">(iterable)</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span> <span class="n">gen</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">194</span> <span class="n">peek</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span> <span class="k">return</span> <span class="n">peek</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">([</span><span class="n">peek</span><span class="p">],</span> <span class="n">gen</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:205,</span> in <span class="ni">peek_at</span><span class="nt">(iterable)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="n">gen</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">205</span> <span class="n">peek</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">return</span> <span class="n">peek</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">([</span><span class="n">peek</span><span class="p">],</span> <span class="n">gen</span><span class="p">)</span>
 
 <span class="ne">StopIteration</span>: 
 
@@ -1714,14 +1633,14 @@ if (window.Jupyter !== undefined) {
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dsets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;station&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:232,</span> in <span class="ni">concat</span><span class="nt">(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>     <span class="n">first_obj</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">peek_at</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">232</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;must supply at least one object to concatenate&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="k">if</span> <span class="n">compat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_VALID_COMPAT</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="sa">f</span><span class="s2">&quot;compat=</span><span class="si">{</span><span class="n">compat</span><span class="si">!r}</span><span class="s2"> invalid: must be &#39;broadcast_equals&#39;, &#39;equals&#39;, &#39;identical&#39;, &#39;no_conflicts&#39; or &#39;override&#39;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:230,</span> in <span class="ni">concat</span><span class="nt">(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>     <span class="n">first_obj</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">peek_at</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;must supply at least one object to concatenate&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">if</span> <span class="n">compat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_VALID_COMPAT</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>         <span class="sa">f</span><span class="s2">&quot;compat=</span><span class="si">{</span><span class="n">compat</span><span class="si">!r}</span><span class="s2"> invalid: must be &#39;broadcast_equals&#39;, &#39;equals&#39;, &#39;identical&#39;, &#39;no_conflicts&#39; or &#39;override&#39;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="p">)</span>
 
 <span class="ne">ValueError</span>: must supply at least one object to concatenate
 </pre></div>
