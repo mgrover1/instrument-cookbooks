@@ -1,0 +1,1013 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Plot Station Maps Combining CROCUS and NOAA Data &#8212; CROCUS Instrument Cookbooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/quicklooks/surface-map';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="National Data Buoy Center (NDBC) Data" href="../external-datasets/ndbc-great-lakes.html" />
+    <link rel="prev" title="Current Weather Quicklooks" href="current-weather.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    CROCUS Instrument Cookbooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data-access.html">Data Access</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebook-template.html">CROCUS Notebook Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="air-quality.html">Air Quality Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current-weather.html">Current Weather Quicklooks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Plot Station Maps Combining CROCUS and NOAA Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../external-datasets/ndbc-great-lakes.html">National Data Buoy Center (NDBC) Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ambient Weather Stations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ambient-weather/read-ambient-data.html">Read, Process, and Visualize Ambient Weather Station Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ambient-weather/visualize-past-obs.html">Visualize Latest Observations from the Ambient Weather Stations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Doppler Lidar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../doppler-lidar/Working-With-Ingested-CROCS-Data.html">Working With Data From The CROCUS Doppler LIDAR Deployed During AGES+</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Micro Rain Radar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../mrr/Crocus-Thredds-Cookbook.html"><strong>L</strong>oading <strong>A</strong>nd <strong>V</strong>isualizing mrr dat<strong>A</strong> (LAVA)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Study</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../case-study/lake-breeze-ci.html">CROCUS Lake Breeze (May 7th, 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case-study/pneumonia-front.html">Pneumonia Front (May 16, 2023)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/quicklooks/surface-map.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://jupyter-open.olcf.ornl.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/CROCUS-Urban/instrument-cookbooks&urlpath=lab/tree/instrument-cookbooks/notebooks/notebooks/quicklooks/surface-map.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/quicklooks/surface-map.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Plot Station Maps Combining CROCUS and NOAA Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="plot-station-maps-combining-crocus-and-noaa-data">
+<h1>Plot Station Maps Combining CROCUS and NOAA Data<a class="headerlink" href="#plot-station-maps-combining-crocus-and-noaa-data" title="Link to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PythonMETAR</span> <span class="kn">import</span> <span class="n">Metar</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">GoogleTiles</span><span class="p">,</span> <span class="n">OSM</span>
+<span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">reduce_point_density</span><span class="p">,</span> <span class="n">wind_components</span>
+<span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">dewpoint_from_relative_humidity</span><span class="p">,</span> <span class="n">wet_bulb_temperature</span>
+<span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">altimeter_to_station_pressure</span>
+<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">from</span> <span class="nn">metpy.io</span> <span class="kn">import</span> <span class="n">parse_metar_to_dataframe</span>
+<span class="kn">from</span> <span class="nn">metpy.io</span> <span class="kn">import</span> <span class="n">metar</span>
+<span class="kn">from</span> <span class="nn">metpy.plots</span> <span class="kn">import</span> <span class="n">current_weather</span><span class="p">,</span> <span class="n">sky_cover</span><span class="p">,</span> <span class="n">StationPlot</span>
+<span class="kn">import</span> <span class="nn">sage_data_client</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pressure_to_altimeter</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="n">pressure</span> <span class="o">=</span> <span class="n">pressure</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;hPa&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">m</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">pressure</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span><span class="p">(((</span><span class="mf">1013.25</span> <span class="o">**</span> <span class="mf">0.190284</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.0065</span><span class="p">)</span><span class="o">/</span><span class="mi">288</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">height</span> <span class="o">/</span> <span class="p">((</span><span class="n">pressure</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.190284</span><span class="p">)))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">0.190284</span><span class="p">))</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;inHg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wxt_global_NEIU</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;NEIU&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-002&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_NEIU_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;plugin&quot;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;WSN&#39;</span> <span class="p">:</span> <span class="s1">&#39;W08D&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.9804526</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.7196038</span><span class="p">}</span>
+
+<span class="n">wxt_global_NU</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W099&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;NU&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-005&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_NU_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">42.051469749</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.677667183</span><span class="p">}</span>
+
+<span class="n">wxt_global_CSU</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W08E&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;CSU&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-003&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_CSU_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.71991216</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.612834722</span><span class="p">}</span>
+
+<span class="n">wxt_global_ATMOS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W0A4&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;ATMOS&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-001&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_ATMOS_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.7016264</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.9956515</span><span class="p">}</span>
+
+<span class="n">wxt_global_UIC</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W096&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;UIC&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-011&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_UIC_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;10.31.81.1:5000/local/waggle-wxt536.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.869407936</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.645806251</span><span class="p">}</span>
+
+
+<span class="n">var_attrs_wxt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;humidity&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;relative_humidity&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;dewpoint&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;dew_point_temperature&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;air_pressure&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;hPa&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;wind_mean_10s&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;wind_max_10s&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;wind_dir_10s&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;wind_from_direction&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;degrees&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;rainfall&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;precipitation_amount&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;kg m-2&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ingest_wxt_latest</span><span class="p">(</span><span class="n">global_attrs</span><span class="p">,</span> <span class="n">var_attrs</span><span class="p">):</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span>
+    <span class="n">df_temp</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                     <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> 
+                                        <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+                                            <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s1">&#39;wxt.env.temp|wxt.env.humidity|wxt.env.pressure|wxt.rain.accumulation&#39;</span><span class="p">,</span>
+                                            <span class="s2">&quot;plugin&quot;</span> <span class="p">:</span> <span class="n">global_attrs</span><span class="p">[</span><span class="s1">&#39;plugin&#39;</span><span class="p">],</span>
+                                            <span class="s2">&quot;vsn&quot;</span> <span class="p">:</span> <span class="n">global_attrs</span><span class="p">[</span><span class="s1">&#39;WSN&#39;</span><span class="p">],</span>
+                                            <span class="s2">&quot;sensor&quot;</span> <span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
+                                        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">winds</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                     <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> 
+                                        <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+                                            <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s1">&#39;wxt.wind.speed|wxt.wind.direction&#39;</span><span class="p">,</span>
+                                            <span class="s2">&quot;plugin&quot;</span> <span class="p">:</span> <span class="n">global_attrs</span><span class="p">[</span><span class="s1">&#39;plugin&#39;</span><span class="p">],</span>
+                                            <span class="s2">&quot;vsn&quot;</span> <span class="p">:</span> <span class="n">global_attrs</span><span class="p">[</span><span class="s1">&#39;WSN&#39;</span><span class="p">],</span>
+                                            <span class="s2">&quot;sensor&quot;</span> <span class="p">:</span> <span class="s2">&quot;vaisala-wxt536&quot;</span>
+                                        <span class="p">}</span>
+    <span class="p">)</span>
+    
+    <span class="n">hums</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.env.humidity&#39;</span><span class="p">]</span>
+    <span class="n">temps</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.env.temp&#39;</span><span class="p">]</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.env.pressure&#39;</span><span class="p">]</span>
+    <span class="n">rain</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.rain.accumulation&#39;</span><span class="p">]</span>
+
+
+    <span class="n">npres</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pres</span><span class="p">)</span>
+    <span class="n">nhum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hums</span><span class="p">)</span>
+    <span class="n">ntemps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
+    <span class="n">nrains</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rain</span><span class="p">)</span>
+    <span class="n">minsamps</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">nhum</span><span class="p">,</span> <span class="n">ntemps</span><span class="p">,</span> <span class="n">npres</span><span class="p">,</span> <span class="n">nrains</span><span class="p">])</span>
+
+    <span class="n">temps</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">temps</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;humidity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hums</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pres</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;rainfall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rain</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">winds</span><span class="p">[</span><span class="n">winds</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.wind.direction&#39;</span><span class="p">]</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">winds</span><span class="p">[</span><span class="n">winds</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;wxt.wind.speed&#39;</span><span class="p">]</span>
+
+    <span class="n">nspeed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="n">ndir</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+    <span class="n">minsamps</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">nspeed</span><span class="p">,</span> <span class="n">ndir</span><span class="p">])</span>
+
+    <span class="n">speed</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">speed</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">windy</span> <span class="o">=</span> <span class="n">speed</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">windy</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+    <span class="n">windy</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
+
+
+    <span class="n">winds10mean</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="n">winds10max</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="n">dewpoint_from_relative_humidity</span><span class="p">(</span> <span class="n">vals</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">,</span> 
+                                         <span class="n">vals</span><span class="o">.</span><span class="n">humidity</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">percent</span><span class="p">)</span>
+
+    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span>
+    <span class="n">vals10</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span> <span class="c1">#ffil gets rid of nans due to empty resample periods</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">wet_bulb_temperature</span><span class="p">(</span><span class="n">vals10</span><span class="o">.</span><span class="n">pressure</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span>
+                              <span class="n">vals10</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">,</span>
+                              <span class="n">vals10</span><span class="o">.</span><span class="n">dewpoint</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span>
+
+    <span class="n">vals10</span><span class="p">[</span><span class="s1">&#39;wetbulb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wb</span>
+    <span class="n">vals10</span><span class="p">[</span><span class="s1">&#39;wind_dir_10s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">winds10mean</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]</span>
+    <span class="n">vals10</span><span class="p">[</span><span class="s1">&#39;wind_mean_10s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">winds10mean</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span>
+    <span class="n">vals10</span><span class="p">[</span><span class="s1">&#39;wind_max_10s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">winds10max</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">vals10</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    
+    <span class="n">vals10xr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">vals10</span><span class="p">)</span>
+    <span class="n">vals10xr</span> <span class="o">=</span> <span class="n">vals10xr</span><span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+    
+    <span class="n">vals10xr</span> <span class="o">=</span> <span class="n">vals10xr</span><span class="o">.</span><span class="n">assign_attrs</span><span class="p">(</span><span class="n">global_attrs</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">varname</span> <span class="ow">in</span> <span class="n">var_attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">vals10xr</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals10xr</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">assign_attrs</span><span class="p">(</span><span class="n">var_attrs</span><span class="p">[</span><span class="n">varname</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">vals10xr</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kord</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KORD&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+<span class="n">kmdw</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KMDW&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+<span class="n">klot</span> <span class="o">=</span> <span class="n">parse_metar_to_dataframe</span><span class="p">(</span><span class="n">Metar</span><span class="p">(</span><span class="s1">&#39;KLOT&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metar</span><span class="p">)</span>
+
+
+<span class="n">ds_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">station_ids</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">elevations</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">metars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">kord</span><span class="p">,</span> <span class="n">kmdw</span><span class="p">,</span> <span class="n">klot</span><span class="p">])</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xNU</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_NU</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xNU</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNU</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xNU</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNU</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xNU</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NU&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">187</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xNU</span><span class="p">)</span>
+
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xNEIU</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_NEIU</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xNEIU</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNEIU</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xNEIU</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNEIU</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xNEIU</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NEIU&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">182</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xNEIU</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xUIC</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_UIC</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xUIC</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xUIC</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xUIC</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xUIC</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xUIC</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;UIC&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">181</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xUIC</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xATMOS</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_ATMOS</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xATMOS</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xATMOS</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xATMOS</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xATMOS</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xATMOS</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ATMOS&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">231</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xATMOS</span><span class="p">)</span>
+
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ds_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;site&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mrg</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elevations</span>
+
+<span class="c1"># Compute altimeter and mslp values</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;altimeter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pressure_to_altimeter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">pressure</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span> <span class="mi">176</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;mslp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mpcalc</span><span class="o">.</span><span class="n">altimeter_to_sea_level_pressure</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">altimeter</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">inHg</span><span class="p">,</span>
+                                                      <span class="n">data</span><span class="o">.</span><span class="n">elevation</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span>
+                                                      <span class="n">data</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;hPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;sfstns.tbl&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/sfstns.tbl&#39; to &#39;/home/runner/.cache/metpy/v1.6.2&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;master.txt&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/master.txt&#39; to &#39;/home/runner/.cache/metpy/v1.6.2&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;stations.txt&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/stations.txt&#39; to &#39;/home/runner/.cache/metpy/v1.6.2&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.2&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4744: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">54</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span>     <span class="k">pass</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ds_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;site&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">54</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mrg</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elevations</span>
+
+<span class="ne">NameError</span>: name &#39;mrg&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the map projection</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">95</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span>
+                             <span class="n">standard_parallels</span><span class="o">=</span><span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+
+<span class="c1"># Use the Cartopy map projection to transform station locations to the map and</span>
+<span class="c1"># then refine the number of stations plotted by setting a 300km radius</span>
+<span class="n">point_locs</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                   <span class="n">data</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">tiler</span> <span class="o">=</span> <span class="n">OSM</span><span class="p">()</span>
+<span class="n">mercator</span> <span class="o">=</span> <span class="n">tiler</span><span class="o">.</span><span class="n">crs</span>
+<span class="c1">#add_metpy_logo(fig, 1100, 300, size=&#39;large&#39;)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">mercator</span><span class="p">)</span>
+
+
+<span class="c1"># Add some various map elements to the plot to make it recognizable.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">)</span>
+<span class="c1">#ax.add_feature(cfeature.NaturalEarthFeature(&quot;physical&quot;, &quot;land&quot;, &quot;10m&quot;),</span>
+<span class="c1">#              ec=&quot;red&quot;, fc=&quot;yellow&quot;, lw=2, alpha=0.4)</span>
+<span class="c1">#ax.add_feature(cfeature.LAKES)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">tiler</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="c1"># Set plot bounds</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">((</span><span class="o">-</span><span class="mf">88.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.4</span><span class="p">,</span> <span class="mf">41.5</span><span class="p">,</span> <span class="mf">42.1</span><span class="p">))</span>
+
+<span class="c1">#</span>
+<span class="c1"># Here&#39;s the actual station plot</span>
+<span class="c1">#</span>
+
+<span class="c1"># Start the station plot by specifying the axes to draw on, as well as the</span>
+<span class="c1"># lon/lat of the stations (with transform). We also the fontsize to 12 pt.</span>
+<span class="n">stationplot</span> <span class="o">=</span> <span class="n">StationPlot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                          <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">stationplot</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NW&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;degF&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">formatter</span> <span class="o">=</span> <span class="s1">&#39;0.1f&#39;</span><span class="p">)</span>
+<span class="n">stationplot</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;SW&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;degF&quot;</span><span class="p">),</span>
+                           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="n">formatter</span> <span class="o">=</span> <span class="s1">&#39;0.1f&#39;</span><span class="p">)</span>
+
+<span class="n">stationplot</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NE&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mslp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                           <span class="n">formatter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="nb">format</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;.0f&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
+
+<span class="n">ew</span><span class="p">,</span> <span class="n">nw</span> <span class="o">=</span> <span class="n">wind_components</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;wind_mean_10s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter_per_second</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;knot&quot;</span><span class="p">)</span> <span class="p">,</span> 
+                                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;wind_dir_10s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degrees_north</span><span class="p">)</span>
+
+<span class="n">stationplot</span><span class="o">.</span><span class="n">plot_barb</span><span class="p">(</span><span class="n">ew</span><span class="p">,</span> <span class="n">nw</span><span class="p">)</span>
+
+<span class="n">stationplot</span><span class="o">.</span><span class="n">plot_text</span><span class="p">(</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+
+<span class="n">stationplot_metars</span> <span class="o">=</span> <span class="n">StationPlot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">metars</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">metars</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                          <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">stationplot_metars</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NW&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">metars</span><span class="p">[</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;degF&quot;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">formatter</span> <span class="o">=</span> <span class="s1">&#39;0.1f&#39;</span><span class="p">)</span>
+<span class="n">stationplot_metars</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;SW&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">metars</span><span class="p">[</span><span class="s1">&#39;dew_point_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;degF&quot;</span><span class="p">),</span>
+                                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="n">formatter</span> <span class="o">=</span> <span class="s1">&#39;0.1f&#39;</span><span class="p">)</span>
+
+<span class="n">stationplot_metars</span><span class="o">.</span><span class="n">plot_parameter</span><span class="p">(</span><span class="s1">&#39;NE&#39;</span><span class="p">,</span> <span class="n">metars</span><span class="p">[</span><span class="s1">&#39;air_pressure_at_sea_level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                           <span class="n">formatter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="nb">format</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="s1">&#39; .0f&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
+
+
+<span class="n">ew</span><span class="p">,</span> <span class="n">nw</span> <span class="o">=</span> <span class="n">wind_components</span><span class="p">(</span><span class="n">metars</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">knot</span> <span class="p">,</span> 
+                                <span class="n">metars</span><span class="p">[</span><span class="s1">&#39;wind_direction&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degrees_north</span><span class="p">)</span>
+
+
+<span class="n">stationplot_metars</span><span class="o">.</span><span class="n">plot_barb</span><span class="p">(</span><span class="n">ew</span><span class="p">,</span> <span class="n">nw</span><span class="p">)</span>
+<span class="n">stationplot_metars</span><span class="o">.</span><span class="n">plot_text</span><span class="p">(</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span> <span class="n">metars</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TextCollection
+</pre></div>
+</div>
+<img alt="../../_images/1b5ec8f1eb284290d3d8ed54404ea301780595151fd32e2e61bfef4494d60698.png" src="../../_images/1b5ec8f1eb284290d3d8ed54404ea301780595151fd32e2e61bfef4494d60698.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/quicklooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="current-weather.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Current Weather Quicklooks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../external-datasets/ndbc-great-lakes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">National Data Buoy Center (NDBC) Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CROCUS Measurement Strategy Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

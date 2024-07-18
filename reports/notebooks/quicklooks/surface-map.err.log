@@ -1,0 +1,168 @@
+Traceback (most recent call last):
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+kord = parse_metar_to_dataframe(Metar('KORD').metar)
+kmdw = parse_metar_to_dataframe(Metar('KMDW').metar)
+klot = parse_metar_to_dataframe(Metar('KLOT').metar)
+
+
+ds_list = []
+station_ids = []
+elevations = []
+
+metars = pd.concat([kord, kmdw, klot])
+try:
+    xNU = ingest_wxt_latest(wxt_global_NU, var_attrs_wxt).isel(time=-1)
+    xNU['latitude'] = xNU.attrs['latitude']
+    xNU['longitude'] = xNU.attrs['longitude']
+    xNU['site'] = 'NU'
+    elevations.append(187)
+    ds_list.append(xNU)
+
+except:
+    pass
+
+try:
+    xNEIU = ingest_wxt_latest(wxt_global_NEIU, var_attrs_wxt).isel(time=-1)
+    xNEIU['latitude'] = xNEIU.attrs['latitude']
+    xNEIU['longitude'] = xNEIU.attrs['longitude']
+    xNEIU['site'] = 'NEIU'
+    elevations.append(182)
+    ds_list.append(xNEIU)
+except:
+    pass
+
+try:
+    xUIC = ingest_wxt_latest(wxt_global_UIC, var_attrs_wxt).isel(time=-1)
+    xUIC['latitude'] = xUIC.attrs['latitude']
+    xUIC['longitude'] = xUIC.attrs['longitude']
+    xUIC['site'] = 'UIC'
+    elevations.append(181)
+    ds_list.append(xUIC)
+except:
+    pass
+
+try:
+    xATMOS = ingest_wxt_latest(wxt_global_ATMOS, var_attrs_wxt).isel(time=-1)
+    xATMOS['latitude'] = xATMOS.attrs['latitude']
+    xATMOS['longitude'] = xATMOS.attrs['longitude']
+    xATMOS['site'] = 'ATMOS'
+    elevations.append(231)
+    ds_list.append(xATMOS)
+
+except:
+    pass
+
+ds = xr.concat(ds_list, dim='site', coords="minimal", compat="override")
+data = mrg.to_dataframe()
+data['station_id'] = list(ds.site.values)
+data["elevation"] = elevations
+
+# Compute altimeter and mslp values
+data["altimeter"] = pressure_to_altimeter(data.pressure.values * units.hPa, 176 * units.meter)
+data["mslp"] = mpcalc.altimeter_to_sea_level_pressure(data.altimeter.values * units.inHg,
+                                                      data.elevation.values * units.meter,
+                                                      data.temperature.values * units.degC).to("hPa")
+------------------
+
+----- stderr -----
+Downloading file 'sfstns.tbl' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/sfstns.tbl' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stderr -----
+Downloading file 'master.txt' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/master.txt' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stderr -----
+Downloading file 'stations.txt' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/stations.txt' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stderr -----
+Downloading file 'airport-codes.csv' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/airport-codes.csv' to '/home/runner/.cache/metpy/v1.6.2'.
+----- stderr -----
+/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10max = windy.resample('10S').max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+----- stderr -----
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10max = windy.resample('10S').max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+----- stderr -----
+/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10max = windy.resample('10S').max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+----- stderr -----
+/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
+/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  winds10max = windy.resample('10S').max(numeric_only=True).ffill()
+/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+  vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4744: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords('site')` on this object.
+  warnings.warn(
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[5], line 54[0m
+[1;32m     51[0m     [38;5;28;01mpass[39;00m
+[1;32m     53[0m ds [38;5;241m=[39m xr[38;5;241m.[39mconcat(ds_list, dim[38;5;241m=[39m[38;5;124m'[39m[38;5;124msite[39m[38;5;124m'[39m, coords[38;5;241m=[39m[38;5;124m"[39m[38;5;124mminimal[39m[38;5;124m"[39m, compat[38;5;241m=[39m[38;5;124m"[39m[38;5;124moverride[39m[38;5;124m"[39m)
+[0;32m---> 54[0m data [38;5;241m=[39m [43mmrg[49m[38;5;241m.[39mto_dataframe()
+[1;32m     55[0m data[[38;5;124m'[39m[38;5;124mstation_id[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mlist[39m(ds[38;5;241m.[39msite[38;5;241m.[39mvalues)
+[1;32m     56[0m data[[38;5;124m"[39m[38;5;124melevation[39m[38;5;124m"[39m] [38;5;241m=[39m elevations
+
+[0;31mNameError[0m: name 'mrg' is not defined
+

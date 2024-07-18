@@ -15,26 +15,32 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.dates import DateFormatter
-import warnings
-warnings.filterwarnings("ignore")
-from siphon.catalog import TDSCatalog
-import xarray as xr
-import sys
-import cmweather
+cat_url = 'https://thredds.crocus-urban.org/thredds/catalog/neiu-mrrpro-a1/catalog.html'
+cat = TDSCatalog(cat_url)
+print(list(cat.datasets.keys()))
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 6[0m
-[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mwarnings[39;00m
-[1;32m      5[0m warnings[38;5;241m.[39mfilterwarnings([38;5;124m"[39m[38;5;124mignore[39m[38;5;124m"[39m)
-[0;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01msiphon[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcatalog[39;00m [38;5;28;01mimport[39;00m TDSCatalog
-[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mxarray[39;00m [38;5;28;01mas[39;00m [38;5;21;01mxr[39;00m
-[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01msys[39;00m
+[0;31mHTTPError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[3], line 2[0m
+[1;32m      1[0m cat_url [38;5;241m=[39m [38;5;124m'[39m[38;5;124mhttps://thredds.crocus-urban.org/thredds/catalog/neiu-mrrpro-a1/catalog.html[39m[38;5;124m'[39m
+[0;32m----> 2[0m cat [38;5;241m=[39m [43mTDSCatalog[49m[43m([49m[43mcat_url[49m[43m)[49m
+[1;32m      3[0m [38;5;28mprint[39m([38;5;28mlist[39m(cat[38;5;241m.[39mdatasets[38;5;241m.[39mkeys()))
 
-[0;31mModuleNotFoundError[0m: No module named 'siphon'
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/siphon/catalog.py:282[0m, in [0;36mTDSCatalog.__init__[0;34m(self, catalog_url)[0m
+[1;32m    280[0m [38;5;66;03m# get catalog.xml file[39;00m
+[1;32m    281[0m resp [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39msession[38;5;241m.[39mget(catalog_url)
+[0;32m--> 282[0m [43mresp[49m[38;5;241;43m.[39;49m[43mraise_for_status[49m[43m([49m[43m)[49m
+[1;32m    284[0m [38;5;66;03m# top level server url[39;00m
+[1;32m    285[0m [38;5;28mself[39m[38;5;241m.[39mcatalog_url [38;5;241m=[39m resp[38;5;241m.[39murl
+
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/requests/models.py:1024[0m, in [0;36mResponse.raise_for_status[0;34m(self)[0m
+[1;32m   1019[0m     http_error_msg [38;5;241m=[39m (
+[1;32m   1020[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mstatus_code[38;5;132;01m}[39;00m[38;5;124m Server Error: [39m[38;5;132;01m{[39;00mreason[38;5;132;01m}[39;00m[38;5;124m for url: [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39murl[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m   1021[0m     )
+[1;32m   1023[0m [38;5;28;01mif[39;00m http_error_msg:
+[0;32m-> 1024[0m     [38;5;28;01mraise[39;00m HTTPError(http_error_msg, response[38;5;241m=[39m[38;5;28mself[39m)
+
+[0;31mHTTPError[0m: 524 Server Error:  for url: https://thredds.crocus-urban.org/thredds/catalog/neiu-mrrpro-a1/catalog.html
 
