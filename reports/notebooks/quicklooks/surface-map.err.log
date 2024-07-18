@@ -67,8 +67,8 @@ try:
 except:
     pass
 
-ds = xr.concat(ds_list, dim='site', coords="minimal", compat="override")
-data = mrg.to_dataframe()
+ds = xr.concat(ds_list, dim='site')
+data = ds.to_dataframe()
 data['station_id'] = list(ds.site.values)
 data["elevation"] = elevations
 
@@ -88,68 +88,68 @@ Downloading file 'stations.txt' from 'https://github.com/Unidata/MetPy/raw/v1.6.
 ----- stderr -----
 Downloading file 'airport-codes.csv' from 'https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/airport-codes.csv' to '/home/runner/.cache/metpy/v1.6.2'.
 ----- stderr -----
-/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10max = windy.resample('10S').max(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 ----- stderr -----
-/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10max = windy.resample('10S').max(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 ----- stderr -----
-/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10max = windy.resample('10S').max(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 ----- stderr -----
-/tmp/ipykernel_3393/1181064320.py:35: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps['time'] = pd.DatetimeIndex(temps['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:50: SettingWithCopyWarning: 
+/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed['time'] = pd.DatetimeIndex(speed['timestamp'].values)
-/tmp/ipykernel_3393/1181064320.py:56: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10mean = windy.resample('10S').mean(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:57: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   winds10max = windy.resample('10S').max(numeric_only=True).ffill()
-/tmp/ipykernel_3393/1181064320.py:62: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
+/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: 'S' is deprecated and will be removed in a future version, please use 's' instead.
   vals10 = vals.resample('10S').mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4744: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords('site')` on this object.
   warnings.warn(
@@ -157,12 +157,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[5], line 54[0m
-[1;32m     51[0m     [38;5;28;01mpass[39;00m
-[1;32m     53[0m ds [38;5;241m=[39m xr[38;5;241m.[39mconcat(ds_list, dim[38;5;241m=[39m[38;5;124m'[39m[38;5;124msite[39m[38;5;124m'[39m, coords[38;5;241m=[39m[38;5;124m"[39m[38;5;124mminimal[39m[38;5;124m"[39m, compat[38;5;241m=[39m[38;5;124m"[39m[38;5;124moverride[39m[38;5;124m"[39m)
-[0;32m---> 54[0m data [38;5;241m=[39m [43mmrg[49m[38;5;241m.[39mto_dataframe()
-[1;32m     55[0m data[[38;5;124m'[39m[38;5;124mstation_id[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mlist[39m(ds[38;5;241m.[39msite[38;5;241m.[39mvalues)
-[1;32m     56[0m data[[38;5;124m"[39m[38;5;124melevation[39m[38;5;124m"[39m] [38;5;241m=[39m elevations
+Cell [0;32mIn[5], line 60[0m
+[1;32m     58[0m [38;5;66;03m# Compute altimeter and mslp values[39;00m
+[1;32m     59[0m data[[38;5;124m"[39m[38;5;124maltimeter[39m[38;5;124m"[39m] [38;5;241m=[39m pressure_to_altimeter(data[38;5;241m.[39mpressure[38;5;241m.[39mvalues [38;5;241m*[39m units[38;5;241m.[39mhPa, [38;5;241m176[39m [38;5;241m*[39m units[38;5;241m.[39mmeter)
+[0;32m---> 60[0m data[[38;5;124m"[39m[38;5;124mmslp[39m[38;5;124m"[39m] [38;5;241m=[39m [43mmpcalc[49m[38;5;241m.[39maltimeter_to_sea_level_pressure(data[38;5;241m.[39maltimeter[38;5;241m.[39mvalues [38;5;241m*[39m units[38;5;241m.[39minHg,
+[1;32m     61[0m                                                       data[38;5;241m.[39melevation[38;5;241m.[39mvalues [38;5;241m*[39m units[38;5;241m.[39mmeter,
+[1;32m     62[0m                                                       data[38;5;241m.[39mtemperature[38;5;241m.[39mvalues [38;5;241m*[39m units[38;5;241m.[39mdegC)[38;5;241m.[39mto([38;5;124m"[39m[38;5;124mhPa[39m[38;5;124m"[39m)
 
-[0;31mNameError[0m: name 'mrg' is not defined
+[0;31mNameError[0m: name 'mpcalc' is not defined
 
