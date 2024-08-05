@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -438,6 +438,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
 <span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">GoogleTiles</span><span class="p">,</span> <span class="n">OSM</span>
+<span class="kn">import</span> <span class="nn">metpy.calc</span> <span class="k">as</span> <span class="nn">mpcalc</span>
 <span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">reduce_point_density</span><span class="p">,</span> <span class="n">wind_components</span>
 <span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">dewpoint_from_relative_humidity</span><span class="p">,</span> <span class="n">wet_bulb_temperature</span>
 <span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">altimeter_to_station_pressure</span>
@@ -726,86 +727,86 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.2/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.2&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3495/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
+/tmp/ipykernel_3495/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3495/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
+/tmp/ipykernel_3495/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3394/2683943340.py:33: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3495/2683943340.py:33: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:48: SettingWithCopyWarning: 
+/tmp/ipykernel_3495/2683943340.py:48: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3394/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3394/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+/tmp/ipykernel_3495/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
   vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
-/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4744: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3495/2683943340.py:33: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3495/2683943340.py:48: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3495/2683943340.py:54: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
+/tmp/ipykernel_3495/2683943340.py:55: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
+/tmp/ipykernel_3495/2683943340.py:60: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/dataset.py:4789: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
   warnings.warn(
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">60</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="c1"># Compute altimeter and mslp values</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;altimeter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pressure_to_altimeter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">pressure</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span> <span class="mi">176</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">60</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mslp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mpcalc</span><span class="o">.</span><span class="n">altimeter_to_sea_level_pressure</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">altimeter</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">inHg</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>                                                       <span class="n">data</span><span class="o">.</span><span class="n">elevation</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>                                                       <span class="n">data</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;hPa&quot;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;mpcalc&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -898,7 +899,23 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../_images/90c513754a8903013a2b3db097a7c3f3fea36b3b3dc24ff360484cd4df36e96e.png" src="../../_images/90c513754a8903013a2b3db097a7c3f3fea36b3b3dc24ff360484cd4df36e96e.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_land.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<img alt="../../_images/6e2c71dd98b30ddb3956506c14a7c825a60a294d963c082ff49e280bb29e8009.png" src="../../_images/6e2c71dd98b30ddb3956506c14a7c825a60a294d963c082ff49e280bb29e8009.png" />
 </div>
 </div>
 </section>

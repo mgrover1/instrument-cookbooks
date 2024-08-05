@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -507,12 +507,12 @@ Max Grover mgrover&#64;anl.gov</p>
 <span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="c1"># If requested return None for File not found error</span>
 <span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;FileNotFoundError&#39;</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/backends/api.py:1019,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">_find_absolute_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1018</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1019</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;no files to open&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="k">if</span> <span class="n">combine</span> <span class="o">==</span> <span class="s2">&quot;nested&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">))</span> <span class="ow">or</span> <span class="n">concat_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/backends/api.py:1042,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">_find_absolute_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1042</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;no files to open&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span> <span class="k">if</span> <span class="n">combine</span> <span class="o">==</span> <span class="s2">&quot;nested&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">))</span> <span class="ow">or</span> <span class="n">concat_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
 <span class="ne">OSError</span>: no files to open
 </pre></div>
