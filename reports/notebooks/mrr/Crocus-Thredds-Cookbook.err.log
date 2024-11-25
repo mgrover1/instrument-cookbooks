@@ -42,5 +42,5 @@ File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packa
 [1;32m   1023[0m [38;5;28;01mif[39;00m http_error_msg:
 [0;32m-> 1024[0m     [38;5;28;01mraise[39;00m HTTPError(http_error_msg, response[38;5;241m=[39m[38;5;28mself[39m)
 
-[0;31mHTTPError[0m: 524 Server Error:  for url: https://thredds.crocus-urban.org/thredds/catalog/neiu-mrrpro-a1/catalog.html
+[0;31mHTTPError[0m: 502 Server Error: Bad Gateway for url: https://thredds.crocus-urban.org/thredds/catalog/neiu-mrrpro-a1/catalog.html
 

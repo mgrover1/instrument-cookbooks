@@ -31,16 +31,16 @@ ds = xr.concat(dsets, dim='station')
 File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:254[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
 [1;32m    253[0m [38;5;28;01mtry[39;00m:
 [0;32m--> 254[0m     first_obj, objs [38;5;241m=[39m [43mutils[49m[38;5;241;43m.[39;49m[43mpeek_at[49m[43m([49m[43mobjs[49m[43m)[49m
-[1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m:
+[1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m [38;5;28;01mas[39;00m err:
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:198[0m, in [0;36mpeek_at[0;34m(iterable)[0m
-[1;32m    197[0m gen [38;5;241m=[39m [38;5;28miter[39m(iterable)
-[0;32m--> 198[0m peek [38;5;241m=[39m [38;5;28;43mnext[39;49m[43m([49m[43mgen[49m[43m)[49m
-[1;32m    199[0m [38;5;28;01mreturn[39;00m peek, itertools[38;5;241m.[39mchain([peek], gen)
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/utils.py:199[0m, in [0;36mpeek_at[0;34m(iterable)[0m
+[1;32m    198[0m gen [38;5;241m=[39m [38;5;28miter[39m(iterable)
+[0;32m--> 199[0m peek [38;5;241m=[39m [38;5;28;43mnext[39;49m[43m([49m[43mgen[49m[43m)[49m
+[1;32m    200[0m [38;5;28;01mreturn[39;00m peek, itertools[38;5;241m.[39mchain([peek], gen)
 
 [0;31mStopIteration[0m: 
 
-During handling of the above exception, another exception occurred:
+The above exception was the direct cause of the following exception:
 
 [0;31mValueError[0m                                Traceback (most recent call last)
 Cell [0;32mIn[6], line 8[0m
@@ -50,9 +50,9 @@ Cell [0;32mIn[6], line 8[0m
 
 File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:256[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
 [1;32m    254[0m     first_obj, objs [38;5;241m=[39m utils[38;5;241m.[39mpeek_at(objs)
-[1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m:
-[0;32m--> 256[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mmust supply at least one object to concatenate[39m[38;5;124m"[39m)
-[1;32m    258[0m [38;5;28;01mif[39;00m compat [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m _VALID_COMPAT:
+[1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m [38;5;28;01mas[39;00m err:
+[0;32m--> 256[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mmust supply at least one object to concatenate[39m[38;5;124m"[39m) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
+[1;32m    258[0m [38;5;28;01mif[39;00m compat [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [38;5;28mset[39m(_VALID_COMPAT) [38;5;241m-[39m {[38;5;124m"[39m[38;5;124mminimal[39m[38;5;124m"[39m}:
 [1;32m    259[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
 [1;32m    260[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mcompat=[39m[38;5;132;01m{[39;00mcompat[38;5;132;01m!r}[39;00m[38;5;124m invalid: must be [39m[38;5;124m'[39m[38;5;124mbroadcast_equals[39m[38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;124mequals[39m[38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;124midentical[39m[38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;124mno_conflicts[39m[38;5;124m'[39m[38;5;124m or [39m[38;5;124m'[39m[38;5;124moverride[39m[38;5;124m'[39m[38;5;124m"[39m
 [1;32m    261[0m     )
