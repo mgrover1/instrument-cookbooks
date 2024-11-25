@@ -519,6 +519,16 @@
                   <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.822966818</span><span class="p">,</span>
                   <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.609655739</span><span class="p">}</span>
 
+<span class="n">wxt_global_BIG</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W0A0&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;BIG&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-001&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_BIG_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.777038463</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.609755821</span><span class="p">}</span>
+
 
 <span class="n">var_attrs_wxt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
@@ -599,13 +609,13 @@
     <span class="n">windy</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">minsamps</span><span class="p">]</span>
 
 
-    <span class="n">winds10mean</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
-    <span class="n">winds10max</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="n">winds10mean</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="n">winds10max</span> <span class="o">=</span> <span class="n">windy</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="n">dewpoint_from_relative_humidity</span><span class="p">(</span> <span class="n">vals</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">,</span> 
                                          <span class="n">vals</span><span class="o">.</span><span class="n">humidity</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">percent</span><span class="p">)</span>
 
     <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;dewpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span>
-    <span class="n">vals10</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span> <span class="c1">#ffil gets rid of nans due to empty resample periods</span>
+    <span class="n">vals10</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span> <span class="c1">#ffil gets rid of nans due to empty resample periods</span>
     <span class="n">wb</span> <span class="o">=</span> <span class="n">wet_bulb_temperature</span><span class="p">(</span><span class="n">vals10</span><span class="o">.</span><span class="n">pressure</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span>
                               <span class="n">vals10</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">,</span>
                               <span class="n">vals10</span><span class="o">.</span><span class="n">dewpoint</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">degC</span><span class="p">)</span>
@@ -711,6 +721,17 @@
 <span class="k">except</span><span class="p">:</span>
     <span class="k">pass</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xBIG</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_BIG</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xBIG</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xBIG</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xBIG</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xBIG</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xBIG</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;BIG&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xBIG</span><span class="p">)</span>
+
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ds_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;site&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -738,124 +759,102 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.3/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.3&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3383/812442133.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3383/812442133.py:52: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10mean = windy.resample(&#39;10S&#39;).mean(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:53: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  winds10max = windy.resample(&#39;10S&#39;).max(numeric_only=True).ffill()
-/tmp/ipykernel_3383/812442133.py:58: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  vals10 = vals.resample(&#39;10S&#39;).mean(numeric_only=True).ffill() #ffil gets rid of nans due to empty resample periods
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3418/936454763.py:31: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3418/936454763.py:46: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:540: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
   ds.expand_dims(dim_name, create_index_for_new_dim=create_index_for_new_dim)
 </pre></div>
@@ -966,7 +965,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div>
 </div>
-<img alt="../../_images/7241d11278f6e843cb2faa2e7bc700896934113cbe0f925fee93097ba9fa337e.png" src="../../_images/7241d11278f6e843cb2faa2e7bc700896934113cbe0f925fee93097ba9fa337e.png" />
+<img alt="../../_images/dd6c5961ae384840cce0caefdf7d6ab35496fc7489f393f31f83dd0e9942d8f7.png" src="../../_images/dd6c5961ae384840cce0caefdf7d6ab35496fc7489f393f31f83dd0e9942d8f7.png" />
 </div>
 </div>
 </section>
