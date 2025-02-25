@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="&lt;no title&gt;" href="../mrr/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
-    <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark pst-js-only" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -370,16 +381,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -433,28 +452,28 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.gridspec</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gridspec</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
 
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">atan2</span> <span class="k">as</span> <span class="n">atan2</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">atan2</span> <span class="k">as</span> <span class="n">atan2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">metpy.plots</span> <span class="kn">import</span> <span class="n">USCOUNTIES</span>
-<span class="kn">from</span> <span class="nn">metpy.calc</span> <span class="kn">import</span> <span class="n">dewpoint_from_relative_humidity</span>
-<span class="kn">from</span> <span class="nn">metpy.units</span> <span class="kn">import</span> <span class="n">units</span>
-<span class="kn">import</span> <span class="nn">imageio</span>
-<span class="kn">import</span> <span class="nn">pyart</span>
-<span class="kn">import</span> <span class="nn">nexradaws</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">metpy.plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">USCOUNTIES</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">metpy.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">dewpoint_from_relative_humidity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">metpy.units</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">imageio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyart</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nexradaws</span>
 
-<span class="kn">import</span> <span class="nn">sage_data_client</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sage_data_client</span>
 
 <span class="n">templocation</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
 
@@ -535,7 +554,7 @@
 <h2><u>Define Helper Functions</u><a class="headerlink" href="#define-helper-functions" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gc_latlon_bear_dist</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">bear</span><span class="p">,</span> <span class="n">dist</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gc_latlon_bear_dist</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">bear</span><span class="p">,</span> <span class="n">dist</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Input lat1/lon1 as decimal degrees, as well as bearing and distance from</span>
 <span class="sd">    the coordinate. Returns lat2/lon2 of final destination. Cannot be</span>
@@ -555,7 +574,7 @@
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">lat2r</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">lon2r</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">add_scale_line</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_scale_line</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -652,7 +671,7 @@
 <h2><u>Create Display Function to Display CROCUS Domain</u><a class="headerlink" href="#create-display-function-to-display-crocus-domain" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chicago_aq_display</span><span class="p">(</span><span class="n">nradar</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">sites</span><span class="p">,</span> <span class="n">aqvals</span><span class="p">,</span> <span class="n">rad_time</span><span class="p">,</span> <span class="n">rad_site</span><span class="o">=</span><span class="s1">&#39;KLOT&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chicago_aq_display</span><span class="p">(</span><span class="n">nradar</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">sites</span><span class="p">,</span> <span class="n">aqvals</span><span class="p">,</span> <span class="n">rad_time</span><span class="p">,</span> <span class="n">rad_site</span><span class="o">=</span><span class="s1">&#39;KLOT&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="c1">#---------------------------------------------------</span>
     <span class="c1"># Define the GridSpec for Detailed Subplot Placement</span>
     <span class="c1">#---------------------------------------------------</span>
@@ -832,82 +851,84 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 48 scans available between 2023-05-07 16:00:00+00:00 and 2023-05-07 21:00:00+00:00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_162536_V06
-Downloaded KLOT20230507_163934_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_163934_V06
 Downloaded KLOT20230507_160329_V06
-Downloaded KLOT20230507_163235_V06
+Downloaded KLOT20230507_162536_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_161726_V06
 Downloaded KLOT20230507_161027_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_165332_V06_MDM
+Downloaded KLOT20230507_163235_V06
 Downloaded KLOT20230507_165332_V06
-Downloaded KLOT20230507_164633_V06
+Downloaded KLOT20230507_165332_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_170031_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_164633_V06
 Downloaded KLOT20230507_172127_V06
-Downloaded KLOT20230507_172827_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_170729_V06
-Downloaded KLOT20230507_161726_V06
-Downloaded KLOT20230507_171428_V06
-Downloaded KLOT20230507_174224_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_171428_V06
+Downloaded KLOT20230507_170031_V06
+Downloaded KLOT20230507_172827_V06
+Downloaded KLOT20230507_170729_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_175622_V06_MDM
-Downloaded KLOT20230507_173525_V06
-Downloaded KLOT20230507_181020_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_180321_V06
-Downloaded KLOT20230507_175622_V06
+Downloaded KLOT20230507_180321_V06
 Downloaded KLOT20230507_174923_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_174224_V06
+Downloaded KLOT20230507_173525_V06
+Downloaded KLOT20230507_175622_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_183117_V06
 Downloaded KLOT20230507_181719_V06
-Downloaded KLOT20230507_183117_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_182419_V06
-Downloaded KLOT20230507_183817_V06
-Downloaded KLOT20230507_185917_V06_MDM
-Downloaded KLOT20230507_185217_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_191316_V06
 Downloaded KLOT20230507_184517_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_185217_V06
+Downloaded KLOT20230507_185917_V06_MDM
+Downloaded KLOT20230507_182419_V06
+Downloaded KLOT20230507_183817_V06
 Downloaded KLOT20230507_185917_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_181020_V06
 Downloaded KLOT20230507_190617_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_193413_V06
 Downloaded KLOT20230507_192015_V06
+Downloaded KLOT20230507_191316_V06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_194112_V06
 Downloaded KLOT20230507_195509_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_192714_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_200209_V06
 Downloaded KLOT20230507_194811_V06
 Downloaded KLOT20230507_195509_V06
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_200209_V06
-Downloaded KLOT20230507_194112_V06
-Downloaded KLOT20230507_200908_V06
+Downloaded KLOT20230507_192714_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_201607_V06
-Downloaded KLOT20230507_202307_V06
+Downloaded KLOT20230507_200908_V06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_203704_V06
+Downloaded KLOT20230507_203006_V06
+Downloaded KLOT20230507_202307_V06
 Downloaded KLOT20230507_205103_V06
-Downloaded KLOT20230507_205801_V06_MDM
 Downloaded KLOT20230507_204403_V06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06_MDM
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_203006_V06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded KLOT20230507_205801_V06
 48 out of 48 files downloaded...0 errors
 </pre></div>
 </div>
@@ -1141,45 +1162,43 @@ Downloaded KLOT20230507_204403_V06
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>working on KLOT20230507_205801_V06
 </pre></div>
 </div>
-<img alt="../../_images/0a5f77e580099ebc45a52cb60d8b1ba931c1f19108e9346f6d89f9c7c00ef2ea.png" src="../../_images/0a5f77e580099ebc45a52cb60d8b1ba931c1f19108e9346f6d89f9c7c00ef2ea.png" />
-<img alt="../../_images/5fb5cbd94f4fc454d9e87bacfd61cba01e3956c9fe623c9db9c2fbea0c231005.png" src="../../_images/5fb5cbd94f4fc454d9e87bacfd61cba01e3956c9fe623c9db9c2fbea0c231005.png" />
-<img alt="../../_images/da51f21e8f5849a5939b908f1035bf6a26343fcfc200b61db264b960167bf54d.png" src="../../_images/da51f21e8f5849a5939b908f1035bf6a26343fcfc200b61db264b960167bf54d.png" />
-<img alt="../../_images/86a7d9763a82f527975f44673e772d898af7679dac8480c44b43b3c7b53e2b52.png" src="../../_images/86a7d9763a82f527975f44673e772d898af7679dac8480c44b43b3c7b53e2b52.png" />
-<img alt="../../_images/3c744b8b5cf7cb4956034d4a08b3b22f3020a39823c0e2337e0f869379d6cc7b.png" src="../../_images/3c744b8b5cf7cb4956034d4a08b3b22f3020a39823c0e2337e0f869379d6cc7b.png" />
-<img alt="../../_images/13368f97ce9b7b6eed311a1b2424d1d93fc7a5836ea93620d9a6f30bb31ab678.png" src="../../_images/13368f97ce9b7b6eed311a1b2424d1d93fc7a5836ea93620d9a6f30bb31ab678.png" />
-<img alt="../../_images/b547e03ea684bc8f2c5c3f7b7518986a84c1bf6f04cef6a6578140db9042facf.png" src="../../_images/b547e03ea684bc8f2c5c3f7b7518986a84c1bf6f04cef6a6578140db9042facf.png" />
-<img alt="../../_images/1916cc0eb8dc9ae4b073b4eac85f0073160ecaa4b7b8c7856184779c16ea95c1.png" src="../../_images/1916cc0eb8dc9ae4b073b4eac85f0073160ecaa4b7b8c7856184779c16ea95c1.png" />
-<img alt="../../_images/06a280c3e26b34b773cc2efd251be392af4d752c2d7c8d267e12f5ac80fcf6ce.png" src="../../_images/06a280c3e26b34b773cc2efd251be392af4d752c2d7c8d267e12f5ac80fcf6ce.png" />
-<img alt="../../_images/f69121faee0ea16b7db2b564e431d6d6f4b5a53fcadcfe43216d1271587afbc9.png" src="../../_images/f69121faee0ea16b7db2b564e431d6d6f4b5a53fcadcfe43216d1271587afbc9.png" />
-<img alt="../../_images/05f3e5ba0211413d4287ac0dd34f8bc612a6881c54ab0f7edcf0d4587189c6ca.png" src="../../_images/05f3e5ba0211413d4287ac0dd34f8bc612a6881c54ab0f7edcf0d4587189c6ca.png" />
-<img alt="../../_images/87eb49472b2bdc2540d7cf8a1b0eeaeb68b08fc4089b4b79cb77bac7c2217006.png" src="../../_images/87eb49472b2bdc2540d7cf8a1b0eeaeb68b08fc4089b4b79cb77bac7c2217006.png" />
-<img alt="../../_images/309854bf91eee893622fdb2dd137ac1f9ee85adf7c1a22d7bcf900f007c618b2.png" src="../../_images/309854bf91eee893622fdb2dd137ac1f9ee85adf7c1a22d7bcf900f007c618b2.png" />
-<img alt="../../_images/b60f9326fec67542612268990b8aac90cb69b072e37fb1de28de136b81f9f4e1.png" src="../../_images/b60f9326fec67542612268990b8aac90cb69b072e37fb1de28de136b81f9f4e1.png" />
-<img alt="../../_images/0a19571eb32443947c7fae6668c69bd73ba49fb67737554e0459eaa993d64f23.png" src="../../_images/0a19571eb32443947c7fae6668c69bd73ba49fb67737554e0459eaa993d64f23.png" />
-<img alt="../../_images/9bb6d73faf56a9de80fb5e270a2ad62250ee9cb8dea9e1bba219be627d4a12eb.png" src="../../_images/9bb6d73faf56a9de80fb5e270a2ad62250ee9cb8dea9e1bba219be627d4a12eb.png" />
-<img alt="../../_images/fbb60067835cf9ca571cddf823c332d0061bbff93a56d82bd1ba09b71ae3ed87.png" src="../../_images/fbb60067835cf9ca571cddf823c332d0061bbff93a56d82bd1ba09b71ae3ed87.png" />
-<img alt="../../_images/48d7d581571e91bb19669a883ffbc43d0bd5082acbda283ac289ae2d60d28632.png" src="../../_images/48d7d581571e91bb19669a883ffbc43d0bd5082acbda283ac289ae2d60d28632.png" />
-<img alt="../../_images/dc19e8e047dbab355f2afe37f900e74a42fa9028ea08a155fa54dd560d5b99c9.png" src="../../_images/dc19e8e047dbab355f2afe37f900e74a42fa9028ea08a155fa54dd560d5b99c9.png" />
-<img alt="../../_images/4d140be2cd52223f61fd703de0c5ed3b8fc57a298f9934690921e92e349d2636.png" src="../../_images/4d140be2cd52223f61fd703de0c5ed3b8fc57a298f9934690921e92e349d2636.png" />
-<img alt="../../_images/129877a468212e14e5b6946132ca361ab2d9f713c88aaa8b52dd4db17664b781.png" src="../../_images/129877a468212e14e5b6946132ca361ab2d9f713c88aaa8b52dd4db17664b781.png" />
-<img alt="../../_images/7001caf9d48dd7dd38648b374b2eb990f809eab94e0e95a60a3a0722548afe7e.png" src="../../_images/7001caf9d48dd7dd38648b374b2eb990f809eab94e0e95a60a3a0722548afe7e.png" />
-<img alt="../../_images/49d3ed204e6347d318bd2b3cefc23f120ef0c54e35c11718413ea0af173fc15f.png" src="../../_images/49d3ed204e6347d318bd2b3cefc23f120ef0c54e35c11718413ea0af173fc15f.png" />
-<img alt="../../_images/71833494666f19b578f6358c4204833b5593ae6f979cd41b20409f0aea882c0b.png" src="../../_images/71833494666f19b578f6358c4204833b5593ae6f979cd41b20409f0aea882c0b.png" />
-<img alt="../../_images/7aca4a9862068f1afb7d9f739b4b0e1b589fd579646b0b6d4a7bdfffb1937b45.png" src="../../_images/7aca4a9862068f1afb7d9f739b4b0e1b589fd579646b0b6d4a7bdfffb1937b45.png" />
-<img alt="../../_images/6056df1c4a56c992894e147a7198af8eb9215a749467f8a27fe6be34c07e2c40.png" src="../../_images/6056df1c4a56c992894e147a7198af8eb9215a749467f8a27fe6be34c07e2c40.png" />
-<img alt="../../_images/3bf4833bbf9356ca76f9d17b59bb94b99dba8716520e98988dc016c691a87de7.png" src="../../_images/3bf4833bbf9356ca76f9d17b59bb94b99dba8716520e98988dc016c691a87de7.png" />
-<img alt="../../_images/dd969fdcf90e5c23f8fe3703496f07b13a6289a9f5b08060276037ceb9b0aac5.png" src="../../_images/dd969fdcf90e5c23f8fe3703496f07b13a6289a9f5b08060276037ceb9b0aac5.png" />
-<img alt="../../_images/a6efc170d2bd8053c4c7ba2ecc9f90bfdea67eae8c46c81118a057b5efb7d75d.png" src="../../_images/a6efc170d2bd8053c4c7ba2ecc9f90bfdea67eae8c46c81118a057b5efb7d75d.png" />
-<img alt="../../_images/574cd5b71e8cff711478d608243060afa6574b71361b8eb8e92435dc24514c4a.png" src="../../_images/574cd5b71e8cff711478d608243060afa6574b71361b8eb8e92435dc24514c4a.png" />
-<img alt="../../_images/a1d990b00020d285cf56e25a5edf1addb63eae3a7d5ec37a450bc9679b9bf933.png" src="../../_images/a1d990b00020d285cf56e25a5edf1addb63eae3a7d5ec37a450bc9679b9bf933.png" />
-<img alt="../../_images/de924746261f02330c131b78030346ea0a9beecd8884f8445bac633f7f7e126d.png" src="../../_images/de924746261f02330c131b78030346ea0a9beecd8884f8445bac633f7f7e126d.png" />
-<img alt="../../_images/72ca0645cc6381d821959dc0fc68945b5fdb703b8f9ea7d933cc2ec8bde8a40c.png" src="../../_images/72ca0645cc6381d821959dc0fc68945b5fdb703b8f9ea7d933cc2ec8bde8a40c.png" />
-<img alt="../../_images/04ab46fc4b209361f48fbedca75e46844f4df7d549b256e979821409c5c7fc60.png" src="../../_images/04ab46fc4b209361f48fbedca75e46844f4df7d549b256e979821409c5c7fc60.png" />
-<img alt="../../_images/04727f0cc2368a44ae94f5866010a580c6e54da92f165c860b35736227577aa2.png" src="../../_images/04727f0cc2368a44ae94f5866010a580c6e54da92f165c860b35736227577aa2.png" />
-<img alt="../../_images/236bf809db837377851b203bf34195be19451dffb23a6d5637f6e5f23e773468.png" src="../../_images/236bf809db837377851b203bf34195be19451dffb23a6d5637f6e5f23e773468.png" />
-<img alt="../../_images/88d4edd974f1b2ad221f64ca12f9df926e6a4ece8a0320f5e7e7adf8f8976ac6.png" src="../../_images/88d4edd974f1b2ad221f64ca12f9df926e6a4ece8a0320f5e7e7adf8f8976ac6.png" />
-<img alt="../../_images/fa27f32d44772efeabb9321c75d88072a43084ffcfb61af21b9c090df1229179.png" src="../../_images/fa27f32d44772efeabb9321c75d88072a43084ffcfb61af21b9c090df1229179.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7f5fac13cd30&gt; (for post_execute), with arguments args (),kwargs {}:
+<img alt="../../_images/8a85dede266476951322e777283df6a9d7fcf7af836eca4ff2d3689a0437998d.png" src="../../_images/8a85dede266476951322e777283df6a9d7fcf7af836eca4ff2d3689a0437998d.png" />
+<img alt="../../_images/ad9c4625e06461a30d5deec97db073d8ecd41f19b0c30240647d6562b7f26eb2.png" src="../../_images/ad9c4625e06461a30d5deec97db073d8ecd41f19b0c30240647d6562b7f26eb2.png" />
+<img alt="../../_images/2d7859d9b36ba910b5bac58bbf6cd0d08db28c46cb3b38207273034395238beb.png" src="../../_images/2d7859d9b36ba910b5bac58bbf6cd0d08db28c46cb3b38207273034395238beb.png" />
+<img alt="../../_images/bfc4daab39574e0714757d59694f3407a421c5f73766da79cfde9576032c5cf3.png" src="../../_images/bfc4daab39574e0714757d59694f3407a421c5f73766da79cfde9576032c5cf3.png" />
+<img alt="../../_images/f17e715c7b4260a1516aae76b80c0f6aab39a446f77904be822aafa20f452ee2.png" src="../../_images/f17e715c7b4260a1516aae76b80c0f6aab39a446f77904be822aafa20f452ee2.png" />
+<img alt="../../_images/932ba8b09f2c991733e969e02eb7406103ca77a94040b75374a87fa198952779.png" src="../../_images/932ba8b09f2c991733e969e02eb7406103ca77a94040b75374a87fa198952779.png" />
+<img alt="../../_images/381bb38528b2e6a84858ddabd52a8bc5030d86b31389afca560272d5a6319beb.png" src="../../_images/381bb38528b2e6a84858ddabd52a8bc5030d86b31389afca560272d5a6319beb.png" />
+<img alt="../../_images/1ab8eb25253d1d682e68756934f9c2418c61d693140e7e75105055cd238e28b9.png" src="../../_images/1ab8eb25253d1d682e68756934f9c2418c61d693140e7e75105055cd238e28b9.png" />
+<img alt="../../_images/c7bb1fdcd4b78aaf501f538e47fbd2d7777889424a388ba5064e36a61888079a.png" src="../../_images/c7bb1fdcd4b78aaf501f538e47fbd2d7777889424a388ba5064e36a61888079a.png" />
+<img alt="../../_images/a3c73e5d04df43c8f0271d4e67f4b29758223dc1f91c2695c5e9e627fb7c3dd7.png" src="../../_images/a3c73e5d04df43c8f0271d4e67f4b29758223dc1f91c2695c5e9e627fb7c3dd7.png" />
+<img alt="../../_images/f1a8f62903dd4ec3b7d6a9295adb86cfa2d859b29831626a43f84047b35ab2cf.png" src="../../_images/f1a8f62903dd4ec3b7d6a9295adb86cfa2d859b29831626a43f84047b35ab2cf.png" />
+<img alt="../../_images/a7f57fde8ee9037ab3eb456fafa5a815f47c1ebe16a23f0095e147fecc2142d6.png" src="../../_images/a7f57fde8ee9037ab3eb456fafa5a815f47c1ebe16a23f0095e147fecc2142d6.png" />
+<img alt="../../_images/187dd57e18fab78816b38906e4bee7b205383e8f2e83b33de6cb259179f2fc34.png" src="../../_images/187dd57e18fab78816b38906e4bee7b205383e8f2e83b33de6cb259179f2fc34.png" />
+<img alt="../../_images/94153e8fac662a6c6c44a2f98a1446c61568fd2d57a2f9bd0e50bf1ab16f7c0b.png" src="../../_images/94153e8fac662a6c6c44a2f98a1446c61568fd2d57a2f9bd0e50bf1ab16f7c0b.png" />
+<img alt="../../_images/d5f84693c123dcdde6d4b82e18305e0e8e0defcac6812a23b81440dfc18606dc.png" src="../../_images/d5f84693c123dcdde6d4b82e18305e0e8e0defcac6812a23b81440dfc18606dc.png" />
+<img alt="../../_images/76a881f6aab169758957109d889c37fddd20b96d6efb750baab2af85d04476db.png" src="../../_images/76a881f6aab169758957109d889c37fddd20b96d6efb750baab2af85d04476db.png" />
+<img alt="../../_images/19ca589e108b0f6ee0e4724a20dd61da2ff3563d00985c72efd98347070f8219.png" src="../../_images/19ca589e108b0f6ee0e4724a20dd61da2ff3563d00985c72efd98347070f8219.png" />
+<img alt="../../_images/6be521f89a867782c1e6cf5d73a8c9345e3fcee9aa8686c56d9ef238d25291ff.png" src="../../_images/6be521f89a867782c1e6cf5d73a8c9345e3fcee9aa8686c56d9ef238d25291ff.png" />
+<img alt="../../_images/edf8accac9a071662fc8df56a8095ec5a3a4d08605544055281cc0c1281b7ee3.png" src="../../_images/edf8accac9a071662fc8df56a8095ec5a3a4d08605544055281cc0c1281b7ee3.png" />
+<img alt="../../_images/aa6926dc43819bed6f1c0efb6c689a1bca4602d7c902d630f6dec1f27ea89c65.png" src="../../_images/aa6926dc43819bed6f1c0efb6c689a1bca4602d7c902d630f6dec1f27ea89c65.png" />
+<img alt="../../_images/5a9a5cbaeaf2ee6a92bf01aaa74ff8bb304c993fefc329447690cc12127f2a9b.png" src="../../_images/5a9a5cbaeaf2ee6a92bf01aaa74ff8bb304c993fefc329447690cc12127f2a9b.png" />
+<img alt="../../_images/0f6eaa99cebbba694ab6796f4679d77289026a4696b4d8e79f37ea9eb7bc99f1.png" src="../../_images/0f6eaa99cebbba694ab6796f4679d77289026a4696b4d8e79f37ea9eb7bc99f1.png" />
+<img alt="../../_images/f8146a6c1c8249cc6f763d01b0cb1090228f3cf0d1db617770f2d8f7cccbbdbd.png" src="../../_images/f8146a6c1c8249cc6f763d01b0cb1090228f3cf0d1db617770f2d8f7cccbbdbd.png" />
+<img alt="../../_images/54776dc8f4524f48de9af7c06c26cebdf13a876f921aca2cd8daa14ee949b0c4.png" src="../../_images/54776dc8f4524f48de9af7c06c26cebdf13a876f921aca2cd8daa14ee949b0c4.png" />
+<img alt="../../_images/e531ed957bf2388c1fca7324e882e56dd5dd3f0fc7cb4fc700d487c76a496e41.png" src="../../_images/e531ed957bf2388c1fca7324e882e56dd5dd3f0fc7cb4fc700d487c76a496e41.png" />
+<img alt="../../_images/9814c1274cf933865e61642b964b0570dec9d51bfc5c99d0729481af88eac26b.png" src="../../_images/9814c1274cf933865e61642b964b0570dec9d51bfc5c99d0729481af88eac26b.png" />
+<img alt="../../_images/6806044b7a5580515881df23778b69b1a3e51297a20d0b47892a0a59170ae8ca.png" src="../../_images/6806044b7a5580515881df23778b69b1a3e51297a20d0b47892a0a59170ae8ca.png" />
+<img alt="../../_images/d7f4f91c6ff580e81a40104bdd5af943f58cc5b259ecb19af0379cf079300f08.png" src="../../_images/d7f4f91c6ff580e81a40104bdd5af943f58cc5b259ecb19af0379cf079300f08.png" />
+<img alt="../../_images/41038126dde2538c7a6019bba29d135426daa5a4f064413a282d142e71cb41d8.png" src="../../_images/41038126dde2538c7a6019bba29d135426daa5a4f064413a282d142e71cb41d8.png" />
+<img alt="../../_images/f0c1ef7fa4a147226ca40d1ca1b2ed662c34d90dc7c43833b2143d796f47ffe5.png" src="../../_images/f0c1ef7fa4a147226ca40d1ca1b2ed662c34d90dc7c43833b2143d796f47ffe5.png" />
+<img alt="../../_images/473a65679cca1c49c09702c13705c62bdfcc9daf9117753e2b7143625836f0e4.png" src="../../_images/473a65679cca1c49c09702c13705c62bdfcc9daf9117753e2b7143625836f0e4.png" />
+<img alt="../../_images/0f8bb686b034f151d5f3113b60ccab4734f1048f22a428d133d4053cbf7c4ec9.png" src="../../_images/0f8bb686b034f151d5f3113b60ccab4734f1048f22a428d133d4053cbf7c4ec9.png" />
+<img alt="../../_images/216bdfe18700fdf13dfcf1d82c7d8d67afa7c5ab6dff5685654fe0f4d39930d5.png" src="../../_images/216bdfe18700fdf13dfcf1d82c7d8d67afa7c5ab6dff5685654fe0f4d39930d5.png" />
+<img alt="../../_images/fd71d156117ce06c70a7f11768b97f5e421f5a58da152e46c0cc144eeff7f615.png" src="../../_images/fd71d156117ce06c70a7f11768b97f5e421f5a58da152e46c0cc144eeff7f615.png" />
+<img alt="../../_images/54dea5903e2e67baeb9389cedf5616b4d92b8b01cc46de2bc06c0b84ecd1a7a0.png" src="../../_images/54dea5903e2e67baeb9389cedf5616b4d92b8b01cc46de2bc06c0b84ecd1a7a0.png" />
+<img alt="../../_images/29ad6ba0f40dd20961b9b901ffcbb58c4e13b288315607386b83e245b50bafc7.png" src="../../_images/29ad6ba0f40dd20961b9b901ffcbb58c4e13b288315607386b83e245b50bafc7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x7fe2c0e72950&gt; (for post_execute), with arguments args (),kwargs {}:
 </pre></div>
 </div>
 </div>
@@ -1265,8 +1284,7 @@ Downloaded KLOT20230507_204403_V06
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1333,8 +1351,8 @@ By CROCUS Measurement Strategy Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

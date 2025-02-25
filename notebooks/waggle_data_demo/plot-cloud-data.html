@@ -1,0 +1,1237 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cloud Data Analysis from CROCUS nodes &#8212; CROCUS Instrument Cookbooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/waggle_data_demo/plot-cloud-data';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/CROCUS_Logo.svg" class="logo__image only-light" alt="CROCUS Instrument Cookbooks - Home"/>
+    <script>document.write(`<img src="../../_static/CROCUS_Logo.svg" class="logo__image only-dark" alt="CROCUS Instrument Cookbooks - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    CROCUS Instrument Cookbooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Access</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data-access.html">Data Access</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebook-template.html">CROCUS Notebook Template</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Looks (Recent Data)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/air-quality.html">Air Quality Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/ceilometer.html">Ceilometer Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/current-weather.html">Current Weather Quicklooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quicklooks/surface-map.html">Plot Station Maps Combining CROCUS and NOAA Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../external-datasets/ndbc-great-lakes.html">National Data Buoy Center (NDBC) Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CROCUS Level 1 Node</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../crocus_level1_node/vaisala_wxt536.html">Read Data from a Vaisala WXT536</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ambient Weather Stations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ambient-weather/read-ambient-data.html">Read, Process, and Visualize Ambient Weather Station Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ambient-weather/visualize-past-obs.html">Visualize Latest Observations from the Ambient Weather Stations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Doppler Lidar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../doppler-lidar/Working-With-Ingested-CROCS-Data.html">Working With Data From The CROCUS Doppler LIDAR Deployed During AGES+</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../doppler-lidar/read-doppler-lidar.html">Read Data from the Doppler Lidar</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Micro Rain Radar</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../mrr/Crocus-Thredds-Cookbook.html"><strong>L</strong>oading <strong>A</strong>nd <strong>V</strong>isualizing mrr dat<strong>A</strong> (LAVA)</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Case Study</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../case-study/lake-breeze-ci.html">CROCUS Lake Breeze (May 7th, 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case-study/pneumonia-front.html">Pneumonia Front (May 16, 2023)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/CROCUS-Urban/instrument-cookbooks/main?urlpath=lab/tree/notebooks/notebooks/waggle_data_demo/plot-cloud-data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://jupyter-open.olcf.ornl.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/CROCUS-Urban/instrument-cookbooks&urlpath=lab/tree/instrument-cookbooks/notebooks/notebooks/waggle_data_demo/plot-cloud-data.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/waggle_data_demo/plot-cloud-data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cloud Data Analysis from CROCUS nodes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-from-beehive-using-sage-data-client">Get data from beehive using Sage_data_client</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-cloud-cover">Plot Cloud cover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-motion">Cloud Motion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cloud-data-analysis-from-crocus-nodes">
+<h1>Cloud Data Analysis from CROCUS nodes<a class="headerlink" href="#cloud-data-analysis-from-crocus-nodes" title="Link to this heading">#</a></h1>
+<p>This Jupyter Notebook demonstrates how to query and visualize cloud data using the Sage data client and pandas library. The notebook includes plotting cloud cover and cloud motion vector direction, filtering data based on rank of the cloud elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sage_data_client</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="get-data-from-beehive-using-sage-data-client">
+<h2>Get data from beehive using Sage_data_client<a class="headerlink" href="#get-data-from-beehive-using-sage-data-client" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfcc</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2025-01-05T20:00:00Z&quot;</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2025-01-05T21:00:00.000Z&quot;</span><span class="p">,</span> 
+    <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/seonghapark/cloud-cover:0.1.3.*&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08B|W08D&quot;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfcc</span><span class="o">=</span><span class="n">dfcc</span><span class="p">[</span><span class="n">dfcc</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;env.coverage.cloud&quot;</span><span class="p">]</span>
+<span class="n">dfcc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.host</th>
+      <th>meta.job</th>
+      <th>meta.node</th>
+      <th>meta.plugin</th>
+      <th>meta.task</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-05 20:02:17.006296064+00:00</td>
+      <td>env.coverage.cloud</td>
+      <td>1.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>cloud-cover-crocus-2214</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/seonghapark/cloud-c...</td>
+      <td>cloud-cover-crocus</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-01-05 20:05:07.394348544+00:00</td>
+      <td>env.coverage.cloud</td>
+      <td>1.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>cloud-cover-crocus-2214</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/seonghapark/cloud-c...</td>
+      <td>cloud-cover-crocus</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-01-05 20:07:57.085552640+00:00</td>
+      <td>env.coverage.cloud</td>
+      <td>1.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>cloud-cover-crocus-2214</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/seonghapark/cloud-c...</td>
+      <td>cloud-cover-crocus</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-01-05 20:10:47.651187456+00:00</td>
+      <td>env.coverage.cloud</td>
+      <td>1.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>cloud-cover-crocus-2214</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/seonghapark/cloud-c...</td>
+      <td>cloud-cover-crocus</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-01-05 20:13:36.652191744+00:00</td>
+      <td>env.coverage.cloud</td>
+      <td>1.0</td>
+      <td>000048b02d3ae277.ws-nxcore</td>
+      <td>cloud-cover-crocus-2214</td>
+      <td>000048b02d3ae277</td>
+      <td>registry.sagecontinuum.org/seonghapark/cloud-c...</td>
+      <td>cloud-cover-crocus</td>
+      <td>W08D</td>
+      <td>core</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="plot-cloud-cover">
+<h3>Plot Cloud cover<a class="headerlink" href="#plot-cloud-cover" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfcc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;meta.vsn&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>meta.vsn
+W08B    Axes(0.125,0.2;0.775x0.68)
+W08D    Axes(0.125,0.2;0.775x0.68)
+dtype: object
+</pre></div>
+</div>
+<img alt="../../_images/655db67b232e4df068dcce9c2103fe88c0bc21dadf3e37036d022da713a1667a.png" src="../../_images/655db67b232e4df068dcce9c2103fe88c0bc21dadf3e37036d022da713a1667a.png" />
+<img alt="../../_images/4cc31bf79ea9f59786acedbbcfe257114c58c8423f88c70edd36de56540a969e.png" src="../../_images/4cc31bf79ea9f59786acedbbcfe257114c58c8423f88c70edd36de56540a969e.png" />
+</div>
+</div>
+</section>
+<section id="cloud-motion">
+<h3>Cloud Motion<a class="headerlink" href="#cloud-motion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sage_data_client</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sage_data_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2025-01-01T06:00:00Z&quot;</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2025-01-01T10:00:00.000Z&quot;</span><span class="p">,</span> 
+    <span class="nb">filter</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;plugin&quot;</span><span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/bhupendraraut/cloud-motion:1.24.11.8a.*&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vsn&quot;</span><span class="p">:</span> <span class="s2">&quot;W08B&quot;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.channel</th>
+      <th>meta.host</th>
+      <th>meta.image_frac</th>
+      <th>meta.input</th>
+      <th>meta.job</th>
+      <th>meta.node</th>
+      <th>meta.nsegments_asked</th>
+      <th>meta.nsegments_found</th>
+      <th>meta.plugin</th>
+      <th>meta.quality</th>
+      <th>meta.seg_id</th>
+      <th>meta.seg_rank</th>
+      <th>meta.seg_size</th>
+      <th>meta.task</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>160</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>382266</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>189</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>18</td>
+      <td>6</td>
+      <td>67587</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>247</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>23</td>
+      <td>8</td>
+      <td>53762</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>164</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>24</td>
+      <td>7</td>
+      <td>62273</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>205</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>178222</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;cmv.mean.dir.degn&#39;, &#39;cmv.mean.mag.pxpm&#39;, &#39;cmv.median.dir.degn&#39;,
+       &#39;cmv.median.mag.pxpm&#39;, &#39;cmv.motion.detected&#39;, &#39;cmv.thresh.otsu&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The cloud motion data is clustered into homogeneous motion regions and ranked based on their coverage. We will plot the top two ranks for a specific cloudy period. This visualizes how different cloud regions may be moving in different directions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter for name only</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cmv.mean.dir.degn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>name</th>
+      <th>value</th>
+      <th>meta.channel</th>
+      <th>meta.host</th>
+      <th>meta.image_frac</th>
+      <th>meta.input</th>
+      <th>meta.job</th>
+      <th>meta.node</th>
+      <th>meta.nsegments_asked</th>
+      <th>meta.nsegments_found</th>
+      <th>meta.plugin</th>
+      <th>meta.quality</th>
+      <th>meta.seg_id</th>
+      <th>meta.seg_rank</th>
+      <th>meta.seg_size</th>
+      <th>meta.task</th>
+      <th>meta.vsn</th>
+      <th>meta.zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2025-01-01 07:49:56.421996959+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>160</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>65</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>382266</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2025-01-01 09:10:30.207055169+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>181</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>69</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>182482</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2025-01-01 06:52:02.490018063+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>182</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>71</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>314992</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2025-01-01 06:37:46.677039992+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>188</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>71</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>350635</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>2025-01-01 07:52:27.830451348+00:00</td>
+      <td>cmv.mean.dir.degn</td>
+      <td>203</td>
+      <td>0</td>
+      <td>0000dca632ed7151.ws-rpi</td>
+      <td>0.9</td>
+      <td>top_camera</td>
+      <td>cloud-motion-v1-368</td>
+      <td>000048b02d3ae2f5</td>
+      <td>100</td>
+      <td>71</td>
+      <td>registry.sagecontinuum.org/bhupendraraut/cloud...</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1</td>
+      <td>174118</td>
+      <td>cloud-motion-v1</td>
+      <td>W08B</td>
+      <td>shield</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create plot for rank 1 only</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">rank_data</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">]</span>
+<span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Rank 1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Direction (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cloud Motion Vector Direction - Rank 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5036821821a93dced7c1fabd642da8a59ec6cba05c6052f4b97e5c9178aed389.png" src="../../_images/5036821821a93dced7c1fabd642da8a59ec6cba05c6052f4b97e5c9178aed389.png" />
+</div>
+</div>
+<p>Cloud direction is too noisy fluctuating between 150 to 250 degrees for most of the time. So we will plot smoothed line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter and prepare data</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cmv.mean.dir.degn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Create two subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Process and plot for each rank</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]):</span>
+    <span class="n">rank_data</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rank</span><span class="p">]</span>
+    
+    <span class="c1"># Normalize sizes for bubbles (between 20 and 200)</span>
+    <span class="n">sizes</span> <span class="o">=</span> <span class="p">((</span><span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> 
+             <span class="p">(</span><span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">+</span> <span class="mi">20</span><span class="p">)</span>
+    
+    <span class="c1"># Smooth the data</span>
+    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Plot original data as bubbles</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rank_data</span><span class="p">)),</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> 
+              <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Plot smoothed line</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rank_data</span><span class="p">)),</span> <span class="n">smoothed</span><span class="p">,</span> 
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smoothed&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Direction (degrees)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cloud Motion Vector Direction - Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c45bab8f60c22e64c5877f14f511e83433fb279e7be0a8d9b9b60b48aa2222d2.png" src="../../_images/c45bab8f60c22e64c5877f14f511e83433fb279e7be0a8d9b9b60b48aa2222d2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter and prepare data</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cmv.mean.dir.degn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Create single plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Process and plot for each rank</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]):</span>
+    <span class="n">rank_data</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rank</span><span class="p">]</span>
+    
+    <span class="c1"># Smooth the data</span>
+    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Plot smoothed line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rank_data</span><span class="p">)),</span> <span class="n">smoothed</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Direction (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Smoothed Cloud Motion Vector Direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/483f3f96cb4383a26429883f722486b2c046ecd5c160625a458451be4e9fd93e.png" src="../../_images/483f3f96cb4383a26429883f722486b2c046ecd5c160625a458451be4e9fd93e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter and prepare data</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cmv.mean.dir.degn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create single plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Process and plot for each rank</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]):</span>
+    <span class="n">rank_data</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rank</span><span class="p">]</span>
+    
+    <span class="c1"># Smooth the data</span>
+    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">rank_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Plot smoothed line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smoothed</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">smoothed</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Direction (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cloud Motion Vector Direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>  <span class="c1"># Rotate and align the tick labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b1f2e94fdec9960c0bce5f0005e9d718dca9b838a1caac3a331d10af722c35dc.png" src="../../_images/b1f2e94fdec9960c0bce5f0005e9d718dca9b838a1caac3a331d10af722c35dc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter and prepare data</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cmv.mean.dir.degn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Process and plot for each rank</span>
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]):</span>
+    <span class="n">rank_data</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">filtered_df</span><span class="p">[</span><span class="s1">&#39;meta.seg_rank&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rank</span><span class="p">]</span>
+    
+    <span class="c1"># Normalize sizes for bubbles (between 20 and 200)</span>
+    <span class="n">sizes</span> <span class="o">=</span> <span class="p">((</span><span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> 
+             <span class="p">(</span><span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;meta.seg_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">+</span> <span class="mi">20</span><span class="p">)</span>
+    
+    <span class="c1"># Smooth the data</span>
+    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">rank_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Plot bubbles and smoothed line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">rank_data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> 
+               <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smoothed</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">smoothed</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1"> Trend&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Direction (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cloud Motion Vector Direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8e90f3b65d964fc8c2f63dba68677258f45b6404060af2dae5c66d89df5b0d7a.png" src="../../_images/8e90f3b65d964fc8c2f63dba68677258f45b6404060af2dae5c66d89df5b0d7a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/waggle_data_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-from-beehive-using-sage-data-client">Get data from beehive using Sage_data_client</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-cloud-cover">Plot Cloud cover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-motion">Cloud Motion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CROCUS Measurement Strategy Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
