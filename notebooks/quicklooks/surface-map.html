@@ -568,6 +568,16 @@ document.write(`
                   <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.79459781</span><span class="p">,</span>
                   <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">88.008268061</span><span class="p">}</span>
 
+<span class="n">wxt_global_SHEDD</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;conventions&#39;</span><span class="p">:</span> <span class="s2">&quot;CF 1.10&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;WSN&#39;</span><span class="p">:</span><span class="s1">&#39;W09E&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;site_ID&#39;</span> <span class="p">:</span> <span class="s2">&quot;SHEDD&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;CAMS_tag&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS-WXT-013&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datastream&#39;</span> <span class="p">:</span> <span class="s2">&quot;CMS_wxt536_SHEDD_a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;plugin&#39;</span> <span class="p">:</span> <span class="s2">&quot;registry.sagecontinuum.org/jrobrien/waggle-wxt536:0.*&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;datalevel&#39;</span> <span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+                  <span class="s1">&#39;latitude&#39;</span> <span class="p">:</span> <span class="mf">41.867918909</span><span class="p">,</span>
+                  <span class="s1">&#39;longitude&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">87.613620645</span><span class="p">}</span>
+
 
 <span class="n">var_attrs_wxt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;standard_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;air_temperature&#39;</span><span class="p">,</span>
                        <span class="s1">&#39;units&#39;</span> <span class="p">:</span> <span class="s1">&#39;celsius&#39;</span><span class="p">},</span>
@@ -793,6 +803,17 @@ document.write(`
 <span class="k">except</span><span class="p">:</span>
     <span class="k">pass</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xSHEDD</span> <span class="o">=</span> <span class="n">ingest_wxt_latest</span><span class="p">(</span><span class="n">wxt_global_SHEDD</span><span class="p">,</span> <span class="n">var_attrs_wxt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xSHEDD</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xSHEDD</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+    <span class="n">xSHEDD</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xSHEDD</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+    <span class="n">xSHEDD</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SHEDD&#39;</span>
+    <span class="n">elevations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+    <span class="n">ds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ds_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;site&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -820,13 +841,13 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;airport-codes.csv&#39; from &#39;https://github.com/Unidata/MetPy/raw/v1.6.3/staticdata/airport-codes.csv&#39; to &#39;/home/runner/.cache/metpy/v1.6.3&#39;.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -834,13 +855,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -848,13 +869,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -862,13 +883,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -876,13 +897,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -890,13 +911,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -904,13 +925,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -918,13 +939,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -932,13 +953,27 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3566/936454763.py:31: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
-/tmp/ipykernel_3566/936454763.py:46: SettingWithCopyWarning: 
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3617/936454763.py:31: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temps[&#39;time&#39;] = pd.DatetimeIndex(temps[&#39;timestamp&#39;].values)
+/tmp/ipykernel_3617/936454763.py:46: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -946,6 +981,65 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   speed[&#39;time&#39;] = pd.DatetimeIndex(speed[&#39;timestamp&#39;].values)
 /home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:540: UserWarning: No index created for dimension site because variable site is not a coordinate. To create an index for site, please first call `.set_coords(&#39;site&#39;)` on this object.
   ds.expand_dims(dim_name, create_index_for_new_dim=create_index_for_new_dim)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">122</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">122</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elevations</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="c1"># Compute altimeter and mslp values</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;altimeter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pressure_to_altimeter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">pressure</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">hPa</span><span class="p">,</span> <span class="mi">176</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">meter</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:4311,</span> in <span class="ni">DataFrame.__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4308</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_array</span><span class="p">([</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4309</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4310</span>     <span class="c1"># set column</span>
+<span class="ne">-&gt; </span><span class="mi">4311</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:4524,</span> in <span class="ni">DataFrame._set_item</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4514</span> <span class="k">def</span><span class="w"> </span><span class="nf">_set_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4515</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4516</span><span class="sd">     Add series to DataFrame in specified column.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4517</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4522</span><span class="sd">     ensure homogeneity.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4523</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4524</span>     <span class="n">value</span><span class="p">,</span> <span class="n">refs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize_column</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4526</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4527</span>         <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span>
+<span class="g g-Whitespace">   </span><span class="mi">4528</span>         <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">4529</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">ExtensionDtype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4530</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4531</span>         <span class="c1"># broadcast across multiple columns if necessary</span>
+<span class="g g-Whitespace">   </span><span class="mi">4532</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">is_unique</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">MultiIndex</span><span class="p">):</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/frame.py:5266,</span> in <span class="ni">DataFrame._sanitize_column</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5263</span>     <span class="k">return</span> <span class="n">_reindex_for_setitem</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5265</span> <span class="k">if</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">5266</span>     <span class="n">com</span><span class="o">.</span><span class="n">require_length_match</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5267</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">sanitize_array</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5268</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5269</span>     <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5270</span>     <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5273</span>     <span class="c1"># TODO: Remove kludge in sanitize_array for string mode when enforcing</span>
+<span class="g g-Whitespace">   </span><span class="mi">5274</span>     <span class="c1"># this deprecation</span>
+
+<span class="nn">File ~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/pandas/core/common.py:573,</span> in <span class="ni">require_length_match</span><span class="nt">(data, index)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="sd"> Check the length of data matches the length of the index.</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">573</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span>         <span class="s2">&quot;Length of values &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span>         <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">) &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span>         <span class="s2">&quot;does not match length of index &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span>         <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="p">)</span>
+
+<span class="ne">ValueError</span>: Length of values (10) does not match length of index (9)
 </pre></div>
 </div>
 </div>
@@ -1038,23 +1132,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_land.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_ocean.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_boundary_lines_land.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<img alt="../../_images/3d9d62ce7d8e6e081ed1c823c16a2118cc5b6edbd320023e742cecbbf3840558.png" src="../../_images/3d9d62ce7d8e6e081ed1c823c16a2118cc5b6edbd320023e742cecbbf3840558.png" />
+<img alt="../../_images/3e5d56f04fa33efb8361470a8a80f3c9feb00c9a7d3fd0e77e5fc5d85d3a99c3.png" src="../../_images/3e5d56f04fa33efb8361470a8a80f3c9feb00c9a7d3fd0e77e5fc5d85d3a99c3.png" />
 </div>
 </div>
 </section>
