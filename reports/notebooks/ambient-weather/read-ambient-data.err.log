@@ -28,7 +28,7 @@ ds = xr.concat(dsets, dim='station')
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mStopIteration[0m                             Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:254[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/structure/concat.py:254[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
 [1;32m    253[0m [38;5;28;01mtry[39;00m:
 [0;32m--> 254[0m     first_obj, objs [38;5;241m=[39m [43mutils[49m[38;5;241;43m.[39;49m[43mpeek_at[49m[43m([49m[43mobjs[49m[43m)[49m
 [1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m [38;5;28;01mas[39;00m err:
@@ -48,7 +48,7 @@ Cell [0;32mIn[6], line 8[0m
 [1;32m      7[0m     time[38;5;241m.[39msleep([38;5;241m5[39m)
 [0;32m----> 8[0m ds [38;5;241m=[39m [43mxr[49m[38;5;241;43m.[39;49m[43mconcat[49m[43m([49m[43mdsets[49m[43m,[49m[43m [49m[43mdim[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mstation[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
-File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/core/concat.py:256[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
+File [0;32m~/miniconda3/envs/instrument-cookbooks-dev/lib/python3.10/site-packages/xarray/structure/concat.py:256[0m, in [0;36mconcat[0;34m(objs, dim, data_vars, coords, compat, positions, fill_value, join, combine_attrs, create_index_for_new_dim)[0m
 [1;32m    254[0m     first_obj, objs [38;5;241m=[39m utils[38;5;241m.[39mpeek_at(objs)
 [1;32m    255[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m [38;5;28;01mas[39;00m err:
 [0;32m--> 256[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mmust supply at least one object to concatenate[39m[38;5;124m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01merr[39;00m
