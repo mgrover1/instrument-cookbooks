@@ -1,0 +1,30 @@
+name: instrument-cookbooks-dev
+channels:
+  - conda-forge
+  - defaults
+  - pyviz
+dependencies:
+  - arm_pyart
+  - siphon
+  - act-atmos
+  - matplotlib
+  - jupyterlab
+  - cartopy
+  - numpy
+  - dask
+  - distributed
+  - xarray
+  - pandas
+  - fiona
+  - hvplot
+  - imageio
+  - seaborn
+  - pywavelets
+  - pip
+  - pip:
+    - -r doc-requirements.txt
+    - ambient-api
+    - windrose
+    - sage-data-client
+    - nexradaws
+    - git+https://github.com/mgcarre/PythonMETAR

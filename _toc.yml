@@ -1,0 +1,30 @@
+format: jb-book
+root: README
+parts:
+- caption: Data Access
+  chapters:
+    - file: data-access.md
+- caption: Contributing
+  chapters:
+   - file: notebooks/notebook-template
+- caption: Quick Looks (Recent Data)
+  chapters:
+    - glob: notebooks/quicklooks/*
+- caption: External Datasets
+  chapters:
+    - glob: notebooks/external-datasets/*
+- caption: CROCUS Level 1 Node
+  chapters:
+   - glob: notebooks/crocus_level1_node/*
+- caption: Ambient Weather Stations
+  chapters:
+    - glob: notebooks/ambient-weather/*
+- caption: Doppler Lidar
+  chapters:
+   - glob: notebooks/doppler-lidar/*
+- caption: Micro Rain Radar
+  chapters:
+   - glob: notebooks/mrr/*
+- caption: Case Study
+  chapters:
+    - glob: notebooks/case-study/*
