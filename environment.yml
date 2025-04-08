@@ -20,6 +20,7 @@ dependencies:
   - imageio
   - seaborn
   - pywavelets
+  - mystmd
   - pip
   - pip:
     - -r doc-requirements.txt
